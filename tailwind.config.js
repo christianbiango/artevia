@@ -16,11 +16,25 @@ module.exports = {
       pink: "#E37792",
       gray: "#F3F5F7",
       lightGray: "#D7D7D7",
+      opaqueBlueBorder: "rgba(135, 192, 234, 0.33)",
     },
     fontFamily: {
       sans: ['"public/fonts/Linotte"', "sans-serif"],
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        cards: "0px 0px 6.67px 1.01px rgba(135, 192, 234, 0.33)",
+      },
+      keyframes: {
+        progress: {
+          from: { strokeDashoffset: "144" },
+          to: { strokeDashoffset: "calc(144 - (144 * 75) / 100)" },
+        },
+      },
+      animation: {
+        progress: "progress 1s ease",
+      },
+    },
   },
   plugins: [],
 };
