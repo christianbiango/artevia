@@ -28,7 +28,7 @@
     <!-- Manifest -->
     <link rel="manifest" href="manifest.json" />
   </head>
-  <body class="mt-[158px]">
+  <body class="mt-[158px] text-blue">
     <header
       x-data="navbar"
       x-init="init()"
@@ -96,11 +96,11 @@
       class="pt-14 px-8 mb-11"
       x-data="{ secondSectionH2: 'Lutter contre la <strong>désinformation</strong> !' }"
     >
-      <h2 x-html="secondSectionH2" class="text-blue text-2xl mb-11"></h2>
+      <h2 x-html="secondSectionH2" class="text-2xl mb-11"></h2>
       <div class="rounded-lg grid place-items-center">
-        <div class="rounded-lg overflow-hidden">
+        <div class="rounded-[18px] overflow-hidden">
           <iframe
-            class="w-[90vw] h-[216px]"
+            class="w-[90vw] h-[216px] sm:h-[350px]"
             src="https://www.youtube.com/embed/D_AlkIJ8oU4"
             title="Une landing page, c&#39;est quoi ? (définition, aide, lexique, tuto, explication)"
             frameborder="0"
@@ -112,22 +112,28 @@
       </div>
     </section>
     <!--  Un enjeu essentiel-->
-    <section class="px-8 mb-11">
+    <section class="px-8 mb-11" x-data="{expanded: false}">
       <div
         class="mb-[23px]"
         x-data="{
             unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
-            unEnjeuEssentielParagraph: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', 
+            unEnjeuEssentielParagraphUn: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', unEnjeuEssentielParagraphDeux: 'Pour protéger nos sociétés et préserver la confiance, il est indispensable de développer un esprit critique, de s’appuyer sur des sources fiables et de promouvoir une culture de vérification des faits. Combattons ensemble la désinformation pour un avenir mieux informé et plus serein.'
           }"
       >
         <h2 class="text-2xl mb-[26px]" x-html="unEnjeuEssentiel"></h2>
-        <p class="text-sm" x-text="unEnjeuEssentielParagraph"></p>
+        <p class="text-sm" x-html="unEnjeuEssentielParagraphUn"></p>
+        <div x-show="expanded" x-transition>
+          <p
+            class="text-sm mt-[10px]"
+            x-html="unEnjeuEssentielParagraphDeux"
+          ></p>
+        </div>
       </div>
       <button
-        x-data="{unEnjeuEssentielButton: 'Voir plus'}"
+        @click="expanded = !expanded;"
         class="bg-blue p-2.5 text-white rounded-lg grid grid-cols-[auto_auto] place-items-center gap-[10px]"
       >
-        <span x-text="unEnjeuEssentielButton"></span>
+        <span x-text="expanded ? 'Voir moins' : 'Voir plus'"></span>
         <img src="./public/img/pictogrammes/fleche.svg" />
       </button>
     </section>
@@ -250,7 +256,7 @@
               <div
                 class="absolute inset-0 grid place-items-center text-xl font-semibold"
               >
-                <span class="text-blue-600">50%</span>
+                <span>50%</span>
               </div>
             </div>
           </div>
@@ -290,7 +296,7 @@
               <div
                 class="absolute inset-0 grid place-items-center text-xl font-semibold"
               >
-                <span class="text-blue-600">50%</span>
+                <span>50%</span>
               </div>
             </div>
           </div>
@@ -330,7 +336,7 @@
               <div
                 class="absolute inset-0 grid place-items-center text-xl font-semibold"
               >
-                <span class="text-blue-600">50%</span>
+                <span>50%</span>
               </div>
             </div>
           </div>
@@ -454,10 +460,7 @@
               alt="Logo de la campagne de communication Unis pour mieux agir"
             />
           </figure>
-          <span
-            class="text-blue leading-none text-[10px]"
-            x-text="logoSlogan"
-          ></span>
+          <span class="leading-none text-[10px]" x-text="logoSlogan"></span>
         </div>
         <div>
           <ul x-data="{contact: 'Nous contacter'}">

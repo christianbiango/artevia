@@ -30,12 +30,17 @@ module.exports = {
           from: { strokeDashoffset: "144" },
           to: { strokeDashoffset: "calc(144 - (144 * 75) / 100)" },
         },
+        show: {
+          from: { opacity: 0, transform: "translateY(-20px" },
+          to: { opacity: 1, transform: "translateY(0" },
+        },
       },
       transitionDuration: {
         450: "450ms",
       },
       animation: {
         progress: "progress 1s ease",
+        show: "show 0.3s ease-int-out",
       },
     },
   },
