@@ -31,6 +31,9 @@ module.exports = {
           to: { strokeDashoffset: "calc(144 - (144 * 75) / 100)" },
         },
       },
+      transitionDuration: {
+        450: "450ms",
+      },
       animation: {
         progress: "progress 1s ease",
       },
