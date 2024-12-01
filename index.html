@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artevia</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css" />
+    <!-- Alpine.js -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="app.js"></script>
+    <!-- Icons -->
     <link
       rel="icon"
       type="image/png"
@@ -20,17 +25,181 @@
     />
     <meta name="apple-mobile-web-app-title" content="Artevia" />
     <link rel="manifest" href="./public/favicon/site.webmanifest" />
+    <!-- Manifest -->
     <link rel="manifest" href="manifest.json" />
   </head>
   <body>
-    <header>
-      <figure>
+    <header class="pt-[72.37px] pb-[28px]">
+      <div
+        x-data="{logoSlogan: 'Bien s\'unir pour mieux agir'}"
+        class="grid gap-y-3 place-items-center"
+      >
+        <figure>
+          <img
+            src="./public/logos/logo_unis.svg"
+            alt="Logo de la campagne de communication Unis pour mieux agir"
+          />
+        </figure>
+        <span class="text-blue leading-none" x-text="logoSlogan"></span>
+      </div>
+    </header>
+    <!-- Échanger pour mieux progresser -->
+    <section class="bg-blue pt-9 pl-8">
+      <div
+        class="text-white leading-none"
+        x-data="{
+            firstSectionH1: 'Échanger pour mieux <strong class=\'text-lightBlue\'>progresser</strong> !', firstSectionParagraph: 'Unis vous aide à engager des conversations apaisées.', firstSectionButton: 'En savoir plus'
+        }"
+      >
+        <h1 class="text-4xl mb-[13px]" x-html="firstSectionH1"></h1>
+        <p class="text-lg mb-[45px]" x-text="firstSectionParagraph"></p>
+        <button
+          class="bg-opaqueWhite rounded-[37.6px] grid grid-cols-[auto_auto] gap-[7px] place-items-center py-[7px] px-[12.71px] mb-[26px]"
+        >
+          <div class="rounded-full w-3 h-3 bg-white"></div>
+          <span
+            x-text="firstSectionButton"
+            class="text-[10.61px] leading-none"
+          ></span>
+        </button>
+      </div>
+      <figure class="justify-self-end">
         <img
-          src="./logo/logo_unis.png"
-          alt="Logo de la campagne de communication Unis pour mieux agir"
+          src="./public/img/characters/personnes-ensemble.svg"
+          alt="Illustration vectorisée représentant trois personnes discutant ensemble."
         />
       </figure>
-    </header>
+    </section>
+    <!-- Lutter contre la désinformation -->
+    <section
+      class="pt-14 px-8 mb-11"
+      x-data="{ secondSectionH2: 'Lutter contre la <strong>désinformation</strong> !' }"
+    >
+      <h2 x-html="secondSectionH2" class="text-blue text-2xl mb-11"></h2>
+      <div class="rounded-lg grid place-items-center">
+        <div class="rounded-lg overflow-hidden">
+          <iframe
+            class="w-[90vw] h-[216px]"
+            src="https://www.youtube.com/embed/D_AlkIJ8oU4"
+            title="Une landing page, c&#39;est quoi ? (définition, aide, lexique, tuto, explication)"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+    <!--  Un enjeu essentiel-->
+    <section class="px-8 mb-11">
+      <div
+        class="mb-[23px]"
+        x-data="{
+            unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
+            unEnjeuEssentielParagraph: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', 
+          }"
+      >
+        <h2 class="text-2xl mb-[26px]" x-html="unEnjeuEssentiel"></h2>
+        <p class="text-sm" x-text="unEnjeuEssentielParagraph"></p>
+      </div>
+      <button
+        x-data="{unEnjeuEssentielButton: 'Voir plus'}"
+        class="bg-blue p-2.5 text-white rounded-lg grid grid-cols-[auto_auto] place-items-center gap-[10px]"
+      >
+        <span x-text="unEnjeuEssentielButton"></span>
+        <img src="./public/img/pictogrammes/fleche.svg" />
+      </button>
+    </section>
+    <!-- Newsletter -->
+    <section class="px-[15px] mb-[58px]">
+      <div class="bg-blue rounded-[12px] text-white py-[40px]">
+        <div
+          class="text-center mb-[40px]"
+          x-data="{newsletter: 'NEWSLETTER', newsletterTitle: 'Ne manquez plus nos actualités quotidiennes !'}"
+        >
+          <span
+            class="uppercase text-[13px] text-lightBlue mb-[8px]"
+            x-text="newsletter"
+          ></span>
+          <h2 x-text="newsletterTitle"></h2>
+        </div>
+        <!-- Formulaire -->
+        <div class="grid place-items-center">
+          <form class="mb-[13px] w-[80%]">
+            <div
+              class="bg-white rounded-[25px] py-[10px] pl-[22px] pr-[10px] grid grid-cols-[auto_auto] space-between"
+              x-data="{ email: 'Votre adresse e-mail', emailPlaceholder: 'Écris ton mail', submit: 'S\'inscrire' }"
+            >
+              <label for="email" class="sr-only" x-text="email"></label>
+              <input
+                class="placeholder-lightGray"
+                type="email"
+                name="email"
+                id="email"
+                x-bind:placeholder="emailPlaceholder"
+              />
+              <button
+                class="bg-blue text-white text-[13px] rounded-[36px] py-[10px] px-[21px]"
+                type="submit"
+              >
+                <span x-text="submit"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="grid place-items-center">
+          <div
+            class="grid grid-cols-[auto_auto] gap-x-[8px]"
+            x-data="{confidentialite: 'Confidentialité garantie'}"
+          >
+            <img src="./public/img/pictogrammes/coche-valide.svg" />
+            <span class="text-[11px]" x-text="confidentialite"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray pt-[31px]">
+      <div class="pl-[34px]">
+        <div
+          x-data="{logoSlogan: 'Bien s\'unir pour mieux agir'}"
+          class="grid gap-y-[10px] place-items-center mb-[22px]"
+        >
+          <figure>
+            <img
+              class="w[120px] h-[40px]"
+              src="./public/logos/logo_unis.svg"
+              alt="Logo de la campagne de communication Unis pour mieux agir"
+            />
+          </figure>
+          <span
+            class="text-blue leading-none text-[10px]"
+            x-text="logoSlogan"
+          ></span>
+        </div>
+        <div>
+          <ul x-data="{contact: 'Nous contacter'}">
+            <li x-text="contact"></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="text-white bg-blue h-[30px] text-[10px] grid place-items-center"
+      >
+        <div
+          class="grid grid-cols-[auto_auto_auto_auto_auto] gap-x-[8px] place-items-center"
+          x-data="{ year: '2024', copyright: '©', site: 'artevia.netlify.app', separator: '|', rights: 'Tous droits réservés' }"
+        >
+          <span x-text="year"></span>
+          <span x-text="copyright"></span>
+          <span x-text="site"></span>
+          <span x-text="separator"></span>
+          <span x-text="rights"></span>
+        </div>
+      </div>
+    </footer>
 
     <!-- Service Worker -->
     <script>
