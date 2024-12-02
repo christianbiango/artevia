@@ -17,6 +17,7 @@ module.exports = {
       gray: "#F3F5F7",
       lightGray: "#D7D7D7",
       opaqueBlueBorder: "rgba(135, 192, 234, 0.33)",
+      opaqueLightBlue: "rgba(146, 202, 255, 0.46)",
     },
     fontFamily: {
       sans: ['"public/fonts/Linotte"', "sans-serif"],

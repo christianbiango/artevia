@@ -137,47 +137,59 @@
         <img src="./public/img/pictogrammes/fleche.svg" />
       </button>
     </section>
-    <section class="px-5 py-5">
-      <div class="grid grid-cols-4 gap-4">
-        <button>Pourquoi ?</button>
-        <button>Pourquoi ?</button>
-        <button>Pourquoi ?</button>
-        <button>Pourquoi ?</button>
-      </div>
-      <div>
-        <div class="rounded-lg px-5 py-5 shadow-cards">
-          <h3>
-            <span class="text-pink">Pourquoi</span> Est-il si Difficile de
-            Lutter Contre la Désinformation ?
-          </h3>
-          <p>
-            En France, la désinformation représente un défi croissant pour nos
-            relations familiales et amicales. Théories du complot, intox
-            médiatique et dérives sectaires fragmentent les liens, entraînant
-            tristesse et conflits. Le Dialogue : Votre Meilleur Bouclier Contre
-            la Division Pour préserver l’harmonie et apaiser les tensions, le
-            dialogue respectueux reste notre meilleur outil. Apprendre à écouter
-            et échanger de manière constructive peut reconstruire la confiance
-            et protéger vos relations face à ces menaces. Adoptons ensemble une
-            communication bienveillante pour contrer la désinformation et ses
-            effets dévastateurs.
-          </p>
-          <figure>
-            <img src="./public/img/cartes/Illustration.svg" alt="" />
-          </figure>
-        </div>
-        <div class="grid place-items-center">
+    <!-- Carousel -->
+    <section class="px-5 py-5" id="carousel-section" x-data="cardsSlider">
+      <!-- Titres -->
+      <ul class="grid grid-cols-4 gap-4 place-items-center">
+        <template x-for="(title, index) in cardsTitles" :key="index">
+          <li>
+            <button
+              x-text="title"
+              :class="{'font-bold': index === activeIndex, 'text-opaqueLightBlue': index !== activeIndex}"
+              @click="scrollToCard(index)"
+              class="transition-all duration-300 uppercase"
+            ></button>
+          </li>
+        </template>
+      </ul>
+
+      <!-- Cartes -->
+      <div
+        class="overflow-auto grid grid-flow-col gap-[69px]"
+        @scroll="detectActiveCard"
+        id="cards-container"
+      >
+        <template x-for="(card, index) in cardsInformation" :key="index">
           <div
-            class="grid grid-cols-[auto_auto_auto_auto] gap-4 place-items-center mt-5"
+            data-element="card"
+            card-id="index"
+            class="rounded-lg px-5 py-5 shadow-cards min-w-[326px]"
           >
-            <div class="rounded-full w-[7px] h-[7px] bg-pink"></div>
-            <div class="rounded-full w-[7px] h-[7px] bg-blue"></div>
-            <div class="rounded-full w-[7px] h-[7px] bg-blue"></div>
-            <div class="rounded-full w-[7px] h-[7px] bg-blue"></div>
+            <h3 class="mb-2.5" x-html="card.title"></h3>
+            <p x-html="card.content"></p>
+            <figure>
+              <img :src="card.image" alt="" class="justify-self-center" />
+            </figure>
           </div>
+        </template>
+      </div>
+
+      <!-- Bullets points -->
+      <div class="grid place-items-center mt-5">
+        <div
+          class="grid grid-cols-[auto_auto_auto_auto] gap-4 place-items-center"
+        >
+          <template x-for="(_, o) in cardsTitles" :key="o">
+            <button
+              class="rounded-full w-[7px] h-[7px]"
+              :class="o === activeIndex ? 'bg-pink' : 'bg-blue'"
+              @click="scrollToCard(o)"
+            ></button>
+          </template>
         </div>
       </div>
     </section>
+
     <!-- Podcast du jour -->
     <section
       x-data="{nosPodcasts: 'Retrouvez tous nos podcasts sur :'}"
