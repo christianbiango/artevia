@@ -31,6 +31,30 @@ document.addEventListener("alpine:init", () => {
     },
   }));
 
+  Alpine.data("keyNumbers", () => ({
+    numbers: [
+      {
+        num: "10%",
+        text: "Des français sont parfaitement bien informés de l’actualité.",
+        animation: "animate-progressCircle1",
+      },
+      {
+        num: "65%",
+        text: " Des français font confiances aux informations provenant du journalisme.",
+        animation: "animate-progressCircle2",
+      },
+      {
+        num: "60%",
+        text: "Des français adhèrent au moins à une idée complotiste.",
+        animation: "animate-progressCircle3",
+      },
+    ],
+    animateOnView(animation) {
+      const el = this.$el;
+      el.classList.add(animation);
+    },
+  }));
+
   Alpine.data("postsSlider", () => ({
     posts: [
       {
