@@ -31,6 +31,29 @@ document.addEventListener("alpine:init", () => {
     },
   }));
 
+  Alpine.data("postsSlider", () => ({
+    posts: [
+      {
+        title: "Manipulation des informations",
+        excerpt:
+          "Déclarations des opérateurs de plateformes en ligne et questionnaires de l'Arcom.",
+        buttonText: "Article 1",
+        buttonImg: "./public/img/pictogrammes/Vector.svg",
+        imageLink: "./public/img/articles/image.png",
+        link: "https://www.arcom.fr/internet-et-reseaux-sociaux/lutte-contre-la-manipulation-de-linformation-declarations-des-operateurs-de-plateformes-en-ligne-et-questionnaires-de-larcom",
+      },
+      {
+        title: "Manipulation des informations",
+        excerpt:
+          "Déclarations des opérateurs de plateformes en ligne et questionnaires de l'Arcom.",
+        buttonText: "Article 1",
+        buttonImg: "./public/img/pictogrammes/Vector.svg",
+        imageLink: "./public/img/articles/image.png",
+        link: "https://www.arcom.fr/internet-et-reseaux-sociaux/lutte-contre-la-manipulation-de-linformation-declarations-des-operateurs-de-plateformes-en-ligne-et-questionnaires-de-larcom",
+      },
+    ],
+  }));
+
   Alpine.data("cardsSlider", () => ({
     cardsTitles: ["Pourquoi ?", "Les impacts", "Ensemble", "Conseils"],
     cardsInformation: [

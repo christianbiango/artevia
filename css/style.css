@@ -630,6 +630,10 @@ video {
   z-index: 50;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -692,6 +696,10 @@ video {
 
 .mb-2\.5 {
   margin-bottom: 0.625rem;
+}
+
+.mb-\[10px\] {
+  margin-bottom: 10px;
 }
 
 .block {
@@ -786,6 +794,10 @@ video {
   width: 80vw;
 }
 
+.w-\[59px\] {
+  width: 59px;
+}
+
 .min-w-\[300px\] {
   min-width: 300px;
 }
@@ -794,8 +806,16 @@ video {
   min-width: 326px;
 }
 
+.min-w-\[253px\] {
+  min-width: 253px;
+}
+
 .max-w-\[300px\] {
   max-width: 300px;
+}
+
+.max-w-\[253px\] {
+  max-width: 253px;
 }
 
 .flex-none {
@@ -819,6 +839,10 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.grid-flow-row {
+  grid-auto-flow: row;
 }
 
 .grid-flow-col {
@@ -871,6 +895,10 @@ video {
 
 .gap-\[69px\] {
   gap: 69px;
+}
+
+.gap-6 {
+  gap: 1.5rem;
 }
 
 .gap-x-\[8px\] {
@@ -928,6 +956,10 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
 }
 
 .rounded-b-xl {
@@ -1029,6 +1061,16 @@ video {
 .py-\[7px\] {
   padding-top: 7px;
   padding-bottom: 7px;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .pl-6 {
@@ -1180,6 +1222,16 @@ video {
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover\:bg-lightBlue:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(135 192 234 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-pink:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(227 119 146 / var(--tw-bg-opacity, 1));
 }
 
 .group:hover .group-hover\:bg-lightBlue {

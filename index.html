@@ -367,47 +367,41 @@
       >
         <h2 class="text-2xl mb-[26px]" x-html="lisezNosArticles"></h2>
       </div>
-      <div>
-        <article
-          x-data="{
-          article1H3: 'Manipulation des informations',
-          article1Paragraphe: `Déclarations des opérateurs
-          de plateformes en ligne et
-          questionnaires de l'Arcom.`,
-          article1Bouton: 'Article 1',
-          lienArticle: 'https://www.arcom.fr/internet-et-reseaux-sociaux/lutte-contre-la-manipulation-de-linformation-declarations-des-operateurs-de-plateformes-en-ligne-et-questionnaires-de-larcom'
-          }"
-        >
-          <div class="inline-block relative">
-            <figure>
-              <img
-                src="./public/img/articles/image.png"
-                alt="Illustration vectorisée représentant un ordinateur et des informations."
-              />
-            </figure>
-            <div class="absolute bottom-0 right-0 bg-white p-1.5 rounded-tl-xl">
+      <div
+        x-data="postsSlider"
+        class="overflow-auto grid grid-flow-col gap-[69px] py-10"
+      >
+        <template x-for="(post, index) in posts" :key="index">
+          <article class="min-w-[253px]">
+            <div class="inline-block relative">
+              <figure>
+                <img
+                  :src="post.imageLink"
+                  alt="Illustration vectorisée représentant un ordinateur et des informations."
+                />
+              </figure>
               <a
-                x-bind:href="lienArticle"
-                class="w-[51px] h-[51px] rounded-full bg-pink grid place-items-center"
+                :href="post.postLink"
                 target="_blank"
                 rel="noopener noreferrer"
+                class="w-[51px] h-[51px] bg-pink rounded-full grid place-items-center absolute bottom-0 right-0 z-10 transition-all duration-300 ease-in-out hover:bg-lightBlue"
               >
                 <figure>
-                  <img src="./public/img/pictogrammes/Vector.svg" alt="" />
+                  <img :src="post.buttonImg" alt="" />
                 </figure>
               </a>
             </div>
-          </div>
-          <h3 class="text-lg mb-2 bold" x-text="article1H3"></h3>
-          <p class="text-sm" x-text="article1Paragraphe"></p>
-          <a
-            x-bind:href="lienArticle"
-            x-text="article1Bouton"
-            class="bg-blue text-white text-[13px] rounded-[36px] py-[10px] px-[21px]"
-            target="_blank"
-            rel="noopener noreferrer"
-          ></a>
-        </article>
+            <h3 class="text-lg mb-2 bold" x-text="post.title"></h3>
+            <p class="text-sm mb-[25px]" x-text="post.excerpt"></p>
+            <a
+              :href="post.postLink"
+              x-text="post.buttonText"
+              class="bg-blue text-white text-[13px] rounded-[36px] py-[10px] px-[21px] transition-all duration-300 hover:bg-pink"
+              target="_blank"
+              rel="noopener noreferrer"
+            ></a>
+          </article>
+        </template>
       </div>
     </section>
 
