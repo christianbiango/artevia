@@ -35,9 +35,10 @@
       class="transition-all duration-[450ms] fixed top-0 grid place-items-center bg-white w-full z-50 rounded-b-xl shadow-navbar"
       :class="{'h-[158px]': !scrolled, 'h-[100px] ': scrolled}"
     >
-      <div class="transition-all duration-[450ms]">
+      <div class="transition-all duration-[450ms]" x-data="scrollToTop">
         <div
-          class="grid gap-y-3 place-items-center"
+          @click="scrollToTop()"
+          class="grid gap-y-3 place-items-center cursor-pointer"
           x-data="{ logoSlogan: 'Bien s\'unir pour mieux agir' }"
         >
           <figure class="transition-all duration-[450ms]">
@@ -58,7 +59,7 @@
     </header>
 
     <!-- Échanger pour mieux progresser -->
-    <section class="bg-blue pt-9 pl-6">
+    <section class="bg-blue pt-9 pl-6" id="section-progresser">
       <div
         class="text-white leading-none max-w-[300px]"
         x-data="{

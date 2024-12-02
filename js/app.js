@@ -8,6 +8,12 @@ document.addEventListener("alpine:init", () => {
     },
   }));
 
+  Alpine.data("scrollToTop", () => ({
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+  }));
+
   Alpine.data("scrollHandler", () => ({
     scrollToSection(event) {
       const targetId = event.target
