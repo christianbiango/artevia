@@ -38,11 +38,16 @@
       x-init="init()"
       class="transition-all duration-[450ms] fixed top-0 grid place-items-center bg-white w-full z-50 rounded-b-xl shadow-navbar"
       :class="{'h-[158px]': !scrolled, 'h-[100px] ': scrolled}"
+      role="banner"
+      aria-label="En-tête de la page de la campagne Unis"
     >
       <div class="transition-all duration-[450ms]" x-data="scrollToTop">
         <div
           @click="scrollToTop()"
           class="grid gap-y-3 place-items-center cursor-pointer"
+          role="button"
+          tabindex="0"
+          aria-label="Retour en haut de la page"
           x-data="{ logoSlogan: 'Bien s\'unir pour mieux agir' }"
         >
           <figure class="transition-all duration-[450ms]">
@@ -63,38 +68,60 @@
     </header>
 
     <!-- Échanger pour mieux progresser -->
-    <section class="bg-blue pt-9 pl-6" id="section-progresser">
+    <section
+      class="smd:px-9 lg:px-24"
+      id="section-progresser"
+      aria-labelledby="progresser-title"
+    >
       <div
-        class="text-white leading-none max-w-[300px]"
-        x-data="{
-            firstSectionH1: 'Échanger pour mieux <strong class=\'text-lightBlue\'>progresser</strong> !', firstSectionParagraph: 'Unis vous aide à engager des conversations apaisées.', enSavoirPlus: 'En savoir plus'
-        }"
+        class="bg-blue pt-9 px-6 sm:px-12 smd:rounded-[49px] sm:grid sm:pt-12 sm:grid-rows-[auto_auto] sm:gap-[26px] smd:grid-rows-none smd:grid-cols-[1fr_1.3fr] smd:pr-4 smd:gap-x-12 smd:h-[24rem] md:h-[28rem] lg:pl-20 md:pt-[76px] max-w-[1085px] w-full lg:justify-self-center vlg:gap-0"
       >
-        <h1 class="text-4xl mb-[13px]" x-html="firstSectionH1"></h1>
-        <p class="text-lg mb-[45px]" x-text="firstSectionParagraph"></p>
-        <div x-data="scrollHandler">
-          <button
-            @click="scrollToSection($event)"
-            data-target="section-desinformation"
-            class="bg-opaqueWhite rounded-[37.6px] grid grid-cols-[auto_auto] gap-[7px] place-items-center py-[7px] px-[12.71px] mb-[26px] group"
-          >
-            <div
-              class="rounded-full w-3 h-3 bg-white transition-all duration-300 group-hover:bg-lightBlue"
-            ></div>
-            <span
-              x-text="enSavoirPlus"
-              class="text-[10.61px] leading-none"
-            ></span>
-          </button>
+        <div
+          class="text-white leading-none max-w-[300px] mb-[26px] sm:mb-0 md:max-w-full lg:mt-5"
+          x-data="{
+            firstSectionH1: 'Échanger pour mieux <strong class=\'text-lightBlue\'>progresser !</strong>', 
+            firstSectionParagraph: 'Unis vous aide à engager des conversations apaisées.', 
+            enSavoirPlus: 'En savoir plus'
+          }"
+        >
+          <h1
+            id="progresser-title"
+            class="text-4xl mb-[13px] smd:mb-[10px] md:max-w-[340px] lg:text-5xl lg:mb-[13px] vlg:max-w-full"
+            x-html="firstSectionH1"
+          ></h1>
+          <p
+            class="text-lg mb-[45px] smd:mb-[24px] smd:max-w-[230px] md:max-w-[290px] lg:text-xl"
+            x-text="firstSectionParagraph"
+          ></p>
+          <div x-data="scrollHandler">
+            <button
+              @click="scrollToSection($event)"
+              data-target="section-desinformation"
+              class="focus:outline-none focus:ring-2 focus:ring-lightBlue bg-opaqueWhite rounded-[37.6px] grid grid-cols-[auto_auto] gap-2 place-items-center py-2 px-[12.71px] group"
+              aria-label="En savoir plus sur la section désinformation"
+            >
+              <div
+                class="rounded-full w-3 h-3 bg-white transition-all duration-300 group-hover:bg-lightBlue"
+              ></div>
+              <span
+                x-text="enSavoirPlus"
+                class="text-[10.61px] leading-none lg:text-[13px]"
+              ></span>
+            </button>
+          </div>
         </div>
+        <figure
+          class="justify-self-end sm:grid sm:justify-items-center smd:justify-items-end content-end w-full md:block max-w-[493px]"
+        >
+          <img
+            class="w-full aspect-[4/3]"
+            src="./public/img/characters/personnes-ensemble.svg"
+            alt="Illustration vectorisée représentant trois personnes discutant ensemble."
+          />
+        </figure>
       </div>
-      <figure class="justify-self-end">
-        <img
-          src="./public/img/characters/personnes-ensemble.svg"
-          alt="Illustration vectorisée représentant trois personnes discutant ensemble."
-        />
-      </figure>
     </section>
+
     <!-- Lutter contre la désinformation -->
     <section
       id="section-desinformation"

@@ -1,4 +1,3 @@
-"use strict";
 document.addEventListener("alpine:init", () => {
   Alpine.data("navbar", () => ({
     scrolled: false,
