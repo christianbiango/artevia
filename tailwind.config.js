@@ -14,6 +14,7 @@ module.exports = {
       white: "#FFFFFF",
       opaqueWhite: "rgba(255, 255, 255, 0.2)",
       pink: "#E37792",
+      podcastGray: "rgba(42, 69, 102, 0.22)",
       gray: "#F3F5F7",
       lightGray: "#D7D7D7",
       opaqueBlueBorder: "rgba(135, 192, 234, 0.33)",

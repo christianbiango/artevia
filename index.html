@@ -203,13 +203,31 @@
       <div x-data="{podcastH2: 'Le podcast <strong>du jour</strong>'}">
         <h2 class="text-2xl mb-[26px]" x-html="podcastH2"></h2>
       </div>
-      <audio controls>
-        <source
-          src="./public/audios/Myuu-TenderRemains.mp3"
-          type="audio/mpeg"
-        />
-        Your browser does not support the audio element.
-      </audio>
+      <div
+        class="bg-podcastGray rounded-[20px] p-7 grid grid-cols-[auto_1fr] gap-[17px] place-items-center"
+      >
+        <div>
+          <figure>
+            <img src="./public/logos/mini-logo.svg" alt="" />
+          </figure>
+        </div>
+        <div class="w-full" x-data="{title: 'Le dialogue'}">
+          <h3 x-text="title"></h3>
+          <div class="grid grid-cols-[20px_auto] place-items-center">
+            <figure>
+              <img
+                id="playBtn"
+                src="./public/img/pictogrammes/play.svg"
+                alt="Illustration vectorisée représentant trois personnes discutant ensemble."
+              />
+            </figure>
+            <div class="w-full grid grid-cols-[161px_50px] place-items-center">
+              <div class="w-full" id="waveform"></div>
+              <span id="timer"></span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div>
         <p x-html="nosPodcasts"></p>
         <div class="grid grid-cols-2 place-items-center">
@@ -423,6 +441,9 @@
         </div>
       </div>
     </footer>
+
+    <!-- Wavesurfer -->
+    <script src="./js/wavesurfer.js" type="module"></script>
 
     <!-- Service Worker -->
     <script>
