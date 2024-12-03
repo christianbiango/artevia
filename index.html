@@ -125,24 +125,36 @@
     <!-- Lutter contre la désinformation -->
     <section
       id="section-desinformation"
-      class="pt-14 px-8 mb-11"
-      x-data="{ secondSectionH2: 'Lutter contre la <strong>désinformation</strong> !' }"
+      class="px-6 sm:px-9 py-[72px] smd:px-9 lg:px-24 lg:py-24"
+      role="region"
+      aria-labelledby="desinformation-heading"
     >
-      <h2 x-html="secondSectionH2" class="text-2xl mb-11"></h2>
-      <div class="rounded-lg grid place-items-center">
-        <div class="rounded-[18px] overflow-hidden">
-          <iframe
-            class="w-[90vw] h-[216px] sm:h-[350px]"
-            src="https://www.youtube.com/embed/D_AlkIJ8oU4"
-            title="Une landing page, c&#39;est quoi ? (définition, aide, lexique, tuto, explication)"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+      <div
+        class="w-full justify-self-center grid grid-rows-[auto_auto] gap-6 smd:grid-cols-[auto_1fr] smd:gap-x-[144px] max-w-[1085px]"
+        x-data="{ secondSectionH2: 'Lutter contre</br>la <strong>désinformation</strong> !' }"
+      >
+        <h2
+          id="desinformation-heading"
+          x-html="secondSectionH2"
+          class="text-2xl leading-7 smd:content-center lg:text-5xl"
+        ></h2>
+        <div class="grid place-items-center w-full">
+          <div class="rounded-[18px] overflow-hidden w-full">
+            <iframe
+              class="w-full h-[216px] esm:h-[280px] sm:h-[350px] smd:h-[324px] max-w-[524px]"
+              src="https://www.youtube.com/embed/D_AlkIJ8oU4"
+              title="Une vidéo expliquant ce qu'est une landing page"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              aria-describedby="desinformation-video-description"
+            ></iframe>
+          </div>
         </div>
       </div>
     </section>
+
     <!--  Un enjeu essentiel-->
     <section class="px-8 mb-11" x-data="{expanded: false}">
       <div
