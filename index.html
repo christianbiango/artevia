@@ -69,7 +69,7 @@
 
     <!-- Échanger pour mieux progresser -->
     <section
-      class="smd:px-9 lg:px-24"
+      class="smd:px-9 lg:px-24 pb-[72px] lg:pb-24"
       id="section-progresser"
       aria-labelledby="progresser-title"
     >
@@ -125,7 +125,7 @@
     <!-- Lutter contre la désinformation -->
     <section
       id="section-desinformation"
-      class="px-6 sm:px-9 py-[72px] smd:px-9 lg:px-24 lg:py-24"
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
       role="region"
       aria-labelledby="desinformation-heading"
     >
@@ -156,30 +156,49 @@
     </section>
 
     <!--  Un enjeu essentiel-->
-    <section class="px-8 mb-11" x-data="{expanded: false}">
+    <section
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
+      x-data="{ expanded: false }"
+      role="region"
+      aria-labelledby="essential-issue-heading"
+    >
       <div
-        class="mb-[23px]"
+        class="grid grid-rows-[auto_auto] place-items-start gap-6"
         x-data="{
-            unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
-            unEnjeuEssentielParagraphUn: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', unEnjeuEssentielParagraphDeux: 'Pour protéger nos sociétés et préserver la confiance, il est indispensable de développer un esprit critique, de s’appuyer sur des sources fiables et de promouvoir une culture de vérification des faits. Combattons ensemble la désinformation pour un avenir mieux informé et plus serein.'
-          }"
+      unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
+      unEnjeuEssentielParagraphUn: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', unEnjeuEssentielParagraphDeux: 'Pour protéger nos sociétés et préserver la confiance, il est indispensable de développer un esprit critique, de s’appuyer sur des sources fiables et de promouvoir une culture de vérification des faits. Combattons ensemble la désinformation pour un avenir mieux informé et plus serein.'
+    }"
       >
-        <h2 class="text-2xl mb-[26px]" x-html="unEnjeuEssentiel"></h2>
-        <p class="text-sm" x-html="unEnjeuEssentielParagraphUn"></p>
-        <div x-show="expanded" x-transition>
+        <div class="grid grid-rows-[auto_auto] gap-6 md:w-[80%] max-w-[935px]">
+          <h2
+            id="essential-issue-heading"
+            class="text-2xl"
+            x-html="unEnjeuEssentiel"
+          ></h2>
           <p
-            class="text-sm mt-[10px]"
-            x-html="unEnjeuEssentielParagraphDeux"
+            id="essential-issue-paragraph-1"
+            class="text-sm"
+            x-html="unEnjeuEssentielParagraphUn"
           ></p>
+          <div x-show="expanded" x-transition id="essential-issue-paragraph-2">
+            <p class="text-sm" x-html="unEnjeuEssentielParagraphDeux"></p>
+          </div>
         </div>
+        <button
+          @click="expanded = !expanded;"
+          class="bg-blue p-2.5 text-white rounded-lg grid grid-cols-[auto_auto] place-items-center gap-[10px]"
+          :aria-expanded="expanded"
+          aria-controls="essential-issue-paragraph-2"
+        >
+          <span x-text="expanded ? 'Voir moins' : 'Voir plus'"></span>
+          <img
+            :class="{'rotate-180' : expanded, 'rotate-0': !expanded}"
+            src="./public/img/pictogrammes/fleche.svg"
+            alt=""
+            aria-hidden="true"
+          />
+        </button>
       </div>
-      <button
-        @click="expanded = !expanded;"
-        class="bg-blue p-2.5 text-white rounded-lg grid grid-cols-[auto_auto] place-items-center gap-[10px]"
-      >
-        <span x-text="expanded ? 'Voir moins' : 'Voir plus'"></span>
-        <img src="./public/img/pictogrammes/fleche.svg" />
-      </button>
     </section>
     <!-- Carousel -->
     <section class="px-5 py-5" id="carousel-section" x-data="cardsSlider">
