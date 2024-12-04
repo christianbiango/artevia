@@ -561,7 +561,7 @@
           ></h2>
         </div>
         <!-- Formulaire -->
-        <div class="grid place-items-center">
+        <div class="grid place-items-center" x-data="{formComplete: false}">
           <form
             @submit.prevent="formComplete = true"
             class="mb-5 w-full sm:w-[80%] max-w-[350px]"
