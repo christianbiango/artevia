@@ -461,47 +461,68 @@
       </div>
     </section>
     <!-- Lisez nos articles -->
-    <section class="px-8 mb-11">
+    <section
+      class="px-6 sm:px-9 pb-[72px] md:pt-[96px] smd:px-9 lg:px-24 lg:pb-24"
+      aria-labelledby="articles-title"
+    >
       <div
-        class="mb-[25px]"
         x-data="{
             lisezNosArticles: 'Lisez nos <span class=\'text-pink\'>articles</span>'
           }"
       >
-        <h2 class="text-2xl mb-[26px]" x-html="lisezNosArticles"></h2>
+        <h2
+          id="articles-title"
+          class="text-2xl font-semibold"
+          x-html="lisezNosArticles"
+        ></h2>
       </div>
       <div
         x-data="postsSlider"
         class="overflow-auto grid grid-flow-col gap-[69px] py-10"
+        role="list"
+        aria-label="Liste des articles"
       >
         <template x-for="(post, index) in posts" :key="index">
-          <article class="min-w-[253px]">
+          <article
+            class="min-w-[253px]"
+            role="listitem"
+            :aria-labelledby="'post-title-' + index"
+          >
             <div class="inline-block relative">
               <figure>
                 <img
                   :src="post.imageLink"
-                  alt="Illustration vectorisée représentant un ordinateur et des informations."
+                  :alt="post.alt"
+                  class="w-[260px] h-[212px]"
                 />
               </figure>
               <a
                 :href="post.postLink"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-[51px] h-[51px] bg-pink rounded-full grid place-items-center absolute bottom-0 right-0 z-10 transition-all duration-300 ease-in-out hover:bg-lightBlue"
+                class="w-[51px] h-[51px] rounded-full grid place-items-center absolute bottom-0 right-0 z-10 transition-all duration-300 ease-in-out hover:translate-x-2"
+                :class="{'bg-pink hover:bg-lightBlue': index % 2 === 0, 'bg-lightBlue hover:bg-pink': index % 2 !== 0}"
+                aria-label="`Lire l'article intitulé : ${post.title}`"
               >
                 <figure>
-                  <img :src="post.buttonImg" alt="" />
+                  <img :src="post.buttonImg" alt="" alt="" aria-hidden="true" />
                 </figure>
               </a>
             </div>
-            <h3 class="text-lg mb-2 bold" x-text="post.title"></h3>
-            <p class="text-sm mb-[25px]" x-text="post.excerpt"></p>
+            <h3
+              class="text-lg mb-3 mt-5 font-bold"
+              x-text="post.title"
+              id="`post-title-${index}`"
+            ></h3>
+            <p class="text-sm mb-[25px] w-[80%]" x-text="post.excerpt"></p>
             <a
               :href="post.postLink"
               x-text="post.buttonText"
-              class="bg-blue text-white text-[13px] rounded-[36px] py-[10px] px-[21px] transition-all duration-300 hover:bg-pink"
+              class="bg-blue text-white text-[10px] rounded-lg uppercase font-semibold py-[10px] px-[18px] transition-all duration-300 hover:bg-pink"
+              :class="{'bg-blue hover:bg-pink': index % 2 === 0, 'bg-pink hover:bg-blue': index % 2 !== 0}"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="`Lire l'article intitulé : ${post.title}`"
             ></a>
           </article>
         </template>

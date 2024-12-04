@@ -64,16 +64,17 @@ document.addEventListener("alpine:init", () => {
         buttonText: "Article 1",
         buttonImg: "./public/img/pictogrammes/Vector.svg",
         imageLink: "./public/img/articles/image.png",
+        alt: "Un homme manipulant des informations sur un ordinateur.",
         link: "https://www.arcom.fr/internet-et-reseaux-sociaux/lutte-contre-la-manipulation-de-linformation-declarations-des-operateurs-de-plateformes-en-ligne-et-questionnaires-de-larcom",
       },
       {
-        title: "Manipulation des informations",
-        excerpt:
-          "Déclarations des opérateurs de plateformes en ligne et questionnaires de l'Arcom.",
-        buttonText: "Article 1",
+        title: "Manipulation des informations en période électorale",
+        excerpt: "Les mesures prises par les plateformes en ligne",
+        buttonText: "Article 2",
         buttonImg: "./public/img/pictogrammes/Vector.svg",
-        imageLink: "./public/img/articles/image.png",
-        link: "https://www.arcom.fr/internet-et-reseaux-sociaux/lutte-contre-la-manipulation-de-linformation-declarations-des-operateurs-de-plateformes-en-ligne-et-questionnaires-de-larcom",
+        imageLink: "./public/img/articles/post-2.png",
+        link: "https://www.arcom.fr/internet-et-reseaux-sociaux/lutte-contre-la-manipulation-de-linformation-en-periode-electorale-les-mesures-prises-par-les-plateformes-en-ligne",
+        alt: "Une femme d'affaires de dos, debout, analysant des informations diffusées sur plusieurs écrans.",
       },
     ],
   }));
