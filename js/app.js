@@ -14,6 +14,48 @@ document.addEventListener("alpine:init", () => {
     },
   }));
 
+  Alpine.data("footer", () => ({
+    navItems: {
+      adresse: {
+        title: "15 Rue de l'Avenir,<br/>75010 Paris, France.",
+        link: "",
+      },
+      contact: {
+        title: "+33 (0)9 87 65 43 21",
+        link: "tel:+33987654321",
+      },
+      site: {
+        title: "artevia.netlify.app",
+        link: "#",
+      },
+      mentionsLegales: {
+        title: "Mentions légales",
+        link: "#",
+      },
+      PolitiqueDeConfidentialité: {
+        title: "Politique de confidentialité",
+        link: "#",
+      },
+    },
+    legals: {
+      mentionsLegales: {
+        title: "Mentions légales",
+        link: "#",
+      },
+      PolitiqueDeConfidentialité: {
+        title: "Politique de confidentialité",
+        link: "#",
+      },
+    },
+    copyright: [
+      "2024",
+      "©",
+      "artevia.netlify.app",
+      "|",
+      "Tous droits réservés",
+    ],
+  }));
+
   Alpine.data("scrollHandler", () => ({
     scrollToSection(event) {
       const targetId = event.target

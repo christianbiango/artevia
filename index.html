@@ -465,67 +465,74 @@
       class="px-6 sm:px-9 pb-[72px] md:pt-[96px] smd:px-9 lg:px-24 lg:pb-24"
       aria-labelledby="articles-title"
     >
-      <div
-        x-data="{
+      <div class="max-w-[700px] justify-self-start w-full">
+        <div
+          x-data="{
             lisezNosArticles: 'Lisez nos <span class=\'text-pink\'>articles</span>'
           }"
-      >
-        <h2
-          id="articles-title"
-          class="text-2xl font-semibold"
-          x-html="lisezNosArticles"
-        ></h2>
-      </div>
-      <div
-        x-data="postsSlider"
-        class="overflow-auto grid grid-flow-col gap-[69px] py-10"
-        role="list"
-        aria-label="Liste des articles"
-      >
-        <template x-for="(post, index) in posts" :key="index">
-          <article
-            class="min-w-[253px]"
-            role="listitem"
-            :aria-labelledby="'post-title-' + index"
-          >
-            <div class="inline-block relative">
-              <figure>
-                <img
-                  :src="post.imageLink"
-                  :alt="post.alt"
-                  class="w-[260px] h-[212px]"
-                />
-              </figure>
+        >
+          <h2
+            id="articles-title"
+            class="text-2xl font-semibold"
+            x-html="lisezNosArticles"
+          ></h2>
+        </div>
+        <div
+          x-data="postsSlider"
+          class="overflow-auto grid grid-flow-col gap-[69px] py-10"
+          role="list"
+          aria-label="Liste des articles"
+        >
+          <template x-for="(post, index) in posts" :key="index">
+            <article
+              class="min-w-[253px]"
+              role="listitem"
+              :aria-labelledby="'post-title-' + index"
+            >
+              <div class="inline-block relative">
+                <figure>
+                  <img
+                    :src="post.imageLink"
+                    :alt="post.alt"
+                    class="w-[260px] h-[212px]"
+                  />
+                </figure>
+                <a
+                  :href="post.postLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-[51px] h-[51px] rounded-full grid place-items-center absolute bottom-0 right-0 z-10 transition-all duration-300 ease-in-out hover:translate-x-2"
+                  :class="{'bg-pink hover:bg-lightBlue': index % 2 === 0, 'bg-lightBlue hover:bg-pink': index % 2 !== 0}"
+                  aria-label="`Lire l'article intitulé : ${post.title}`"
+                >
+                  <figure>
+                    <img
+                      :src="post.buttonImg"
+                      alt=""
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  </figure>
+                </a>
+              </div>
+              <h3
+                class="text-lg mb-3 mt-5 font-bold"
+                x-text="post.title"
+                id="`post-title-${index}`"
+              ></h3>
+              <p class="text-sm mb-[25px] w-[80%]" x-text="post.excerpt"></p>
               <a
                 :href="post.postLink"
+                x-text="post.buttonText"
+                class="bg-blue text-white text-[10px] rounded-lg uppercase font-semibold py-[10px] px-[18px] transition-all duration-300 hover:bg-pink"
+                :class="{'bg-blue hover:bg-pink': index % 2 === 0, 'bg-pink hover:bg-blue': index % 2 !== 0}"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-[51px] h-[51px] rounded-full grid place-items-center absolute bottom-0 right-0 z-10 transition-all duration-300 ease-in-out hover:translate-x-2"
-                :class="{'bg-pink hover:bg-lightBlue': index % 2 === 0, 'bg-lightBlue hover:bg-pink': index % 2 !== 0}"
                 aria-label="`Lire l'article intitulé : ${post.title}`"
-              >
-                <figure>
-                  <img :src="post.buttonImg" alt="" alt="" aria-hidden="true" />
-                </figure>
-              </a>
-            </div>
-            <h3
-              class="text-lg mb-3 mt-5 font-bold"
-              x-text="post.title"
-              id="`post-title-${index}`"
-            ></h3>
-            <p class="text-sm mb-[25px] w-[80%]" x-text="post.excerpt"></p>
-            <a
-              :href="post.postLink"
-              x-text="post.buttonText"
-              class="bg-blue text-white text-[10px] rounded-lg uppercase font-semibold py-[10px] px-[18px] transition-all duration-300 hover:bg-pink"
-              :class="{'bg-blue hover:bg-pink': index % 2 === 0, 'bg-pink hover:bg-blue': index % 2 !== 0}"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="`Lire l'article intitulé : ${post.title}`"
-            ></a>
-          </article>
-        </template>
+              ></a>
+            </article>
+          </template>
+        </div>
       </div>
     </section>
 
@@ -605,41 +612,129 @@
       </div>
     </section>
     <!-- Footer -->
-    <footer class="bg-gray pt-[31px]">
-      <div class="pl-[34px]">
-        <div
-          x-data="{logoSlogan: 'Bien s\'unir pour mieux agir'}"
-          class="grid gap-y-[10px] place-items-center mb-[22px]"
-        >
-          <figure>
-            <img
-              class="w[120px] h-[40px]"
-              src="./public/logos/logo_unis.svg"
-              alt="Logo de la campagne de communication Unis pour mieux agir"
-            />
-          </figure>
-          <span class="leading-none text-[10px]" x-text="logoSlogan"></span>
-        </div>
-        <div>
-          <ul x-data="{contact: 'Nous contacter'}">
-            <li x-text="contact"></li>
-            <li></li>
-            <li></li>
-          </ul>
+    <footer>
+      <div
+        class="pl-[34px] bg-gray py-10 sm:pb-5 smd:pb-6 px-6 sm:px-9 smd:px-9 lg:px-24"
+      >
+        <div class="max-w-[1085px] w-full justify-self-center">
+          <div
+            class="sm:grid sm:grid-cols-2 smd:grid-cols-3 sm:gap-[65px] sm:place-items-center md:items-end"
+          >
+            <!-- Logo -->
+            <div
+              x-data="{logoSlogan: 'Bien s\'unir pour mieux agir'}"
+              class="grid gap-y-[10px] place-items-center mb-8 smd:mb-0 md:mb-1"
+            >
+              <figure>
+                <img
+                  class="w-[139px] h-auto"
+                  src="./public/logos/logo_unis.svg"
+                  alt="Logo de la campagne de communication Unis pour mieux agir"
+                />
+              </figure>
+              <span class="leading-none text-[12px]" x-text="logoSlogan"></span>
+            </div>
+            <!-- Nous contacter -->
+            <div
+              x-data="{contactTitle: 'Nous contacter'}"
+              class="smd:col-span-2 md:col-span-1"
+            >
+              <h2
+                class="text-lg font-bold mb-[13px]"
+                x-text="contactTitle"
+              ></h2>
+              <ul
+                x-data="footer"
+                class="smd:grid smd:grid-cols-2 smd:gap-x-[65px] smd:place-items-center md:block"
+              >
+                <div>
+                  <li class="mb-2.5 smd:mb-0">
+                    <a
+                      class="hover:text-lightBlue transition-all duration-300"
+                      :href="navItems.adresse.link"
+                      :aria-label="`Lien vers l'adresse ${navItems.adresse.title}`"
+                      x-html="navItems.adresse.title"
+                    ></a>
+                  </li>
+                </div>
+                <div class="md:hidden">
+                  <li>
+                    <a
+                      class="hover:text-lightBlue transition-colors duration-300"
+                      :href="navItems.contact.link"
+                      :aria-label="`Lien vers le numéro de téléphone ${navItems.contact.title}`"
+                      x-text="navItems.contact.title"
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      class="hover:text-lightBlue transition-colors duration-300"
+                      :href="navItems.site.link"
+                      :aria-label="`Lien vers le site ${navItems.site.title}`"
+                      x-text="navItems.site.title"
+                    ></a>
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div class="md:block" x-data="footer">
+              <ul>
+                <li>
+                  <a
+                    class="hover:text-lightBlue transition-colors duration-300"
+                    :href="navItems.contact.link"
+                    :aria-label="`Lien vers le numéro de téléphone ${navItems.contact.title}`"
+                    x-text="navItems.contact.title"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    class="hover:text-lightBlue transition-colors duration-300"
+                    :href="navItems.site.link"
+                    :aria-label="`Lien vers le site ${navItems.site.title}`"
+                    x-text="navItems.site.title"
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Legals -->
+          <div class="mt-8 smd:mt-10 sm:grid sm:place-items-center">
+            <ul
+              x-data="footer"
+              class="sm:grid sm:grid-cols-2 sm:place-items-center md:gap-10"
+            >
+              <li class="mb-2.5 sm:mb-0">
+                <a
+                  class="hover:text-lightBlue transition-colors duration-300"
+                  :href="legals.mentionsLegales.link"
+                  :aria-label="`Ouverture de la popup contenant les mentions légales ${legals.mentionsLegales.title}`"
+                  x-text="navItems.mentionsLegales.title"
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-lightBlue transition-colors duration-300"
+                  :href="legals.PolitiqueDeConfidentialité.link"
+                  :aria-label="`Ouverture de la popup contenant les mentions légales ${legals.PolitiqueDeConfidentialité.title}`"
+                  x-text="navItems.PolitiqueDeConfidentialité.title"
+                ></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
+      <!-- Bandeau bleu -->
       <div
         class="text-white bg-blue h-[30px] text-[10px] grid place-items-center"
       >
         <div
           class="grid grid-cols-[auto_auto_auto_auto_auto] gap-x-[8px] place-items-center"
-          x-data="{ year: '2024', copyright: '©', site: 'artevia.netlify.app', separator: '|', rights: 'Tous droits réservés' }"
+          x-data="footer"
         >
-          <span x-text="year"></span>
-          <span x-text="copyright"></span>
-          <span x-text="site"></span>
-          <span x-text="separator"></span>
-          <span x-text="rights"></span>
+          <template x-for="(item) in copyright">
+            <span x-text="item"></span>
+          </template>
         </div>
       </div>
     </footer>
