@@ -289,59 +289,96 @@
     <!-- Podcast du jour -->
     <section
       x-data="{nosPodcasts: 'Retrouvez tous nos podcasts sur :'}"
-      class="px-[35px]"
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
+      aria-labelledby="section-podcasts-title"
     >
-      <div x-data="{podcastH2: 'Le podcast <strong>du jour</strong>'}">
-        <h2 class="text-2xl mb-[26px]" x-html="podcastH2"></h2>
-      </div>
-      <div
-        class="bg-podcastGray rounded-[20px] p-7 grid grid-cols-[auto_1fr] gap-[17px] place-items-center"
-      >
-        <div>
-          <figure>
-            <img src="./public/logos/mini-logo.svg" alt="" />
-          </figure>
+      <div class="max-w-[1085px] justify-self-center w-full">
+        <div x-data="{podcastH2: 'Le podcast <strong>du jour</strong>'}">
+          <h2
+            class="text-2xl mb-7"
+            x-html="podcastH2"
+            id="section-podcasts-title"
+          ></h2>
         </div>
-        <div class="w-full" x-data="{title: 'Le dialogue'}">
-          <h3 x-text="title"></h3>
-          <div class="grid grid-cols-[20px_auto] place-items-center">
-            <figure>
-              <img
-                id="playBtn"
-                src="./public/img/pictogrammes/play.svg"
-                alt="Illustration vectorisée représentant trois personnes discutant ensemble."
-              />
-            </figure>
-            <div class="w-full grid grid-cols-[161px_50px] place-items-center">
-              <div class="w-full" id="waveform"></div>
-              <span id="timer"></span>
+        <!-- Le podcast-->
+        <div class="esm:pl-3">
+          <div
+            class="bg-podcastGray rounded-[20px] py-6 pl-[18px] pr-[10px] grid grid-rows-[auto_auto] esm:grid-cols-[3rem_1fr] smd:grid-cols-[70px_1fr] esm:grid-rows-none gap-[17px] place-items-center max-w-[500px] w-full mb-[47px]"
+            role="region"
+            aria-labelledby="podcast-title"
+          >
+            <div>
+              <figure>
+                <img
+                  class="w-12 h-12 smd:w-[70px] smd:h-[70px]"
+                  src="./public/logos/mini-logo.svg"
+                  alt="Logo de la campagne de communication Unis pour mieux agir"
+                />
+              </figure>
+            </div>
+            <div class="w-full" x-data="{title: 'Le dialogue'}">
+              <h3
+                x-text="title"
+                class="mb-3 font-bold text-sm smd:text-lg"
+                id="podcast-title"
+              ></h3>
+              <div class="grid grid-cols-[20px_auto] gap-3 place-items-center">
+                <figure>
+                  <img
+                    id="playBtn"
+                    src="./public/img/pictogrammes/play.svg"
+                    alt="Pictogramme pour démarrer ou arrêter le podcast"
+                  />
+                </figure>
+                <div
+                  class="w-full grid grid-cols-[1fr_50px] place-items-center"
+                >
+                  <div class="w-full" id="waveform"></div>
+                  <span id="timer" aria-live="off"></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <p x-html="nosPodcasts"></p>
-        <div class="grid grid-cols-2 place-items-center">
-          <a
-            href="https://www.arcom.fr/podcasts"
-            class="text-white text-[13px] rounded-[36px] py-[10px] px-[21px]"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <figure>
-              <img src="./public/logos/spotify.svg" alt="" />
-            </figure>
-          </a>
-          <a
-            href="https://www.arcom.fr/podcasts"
-            class="text-white text-[13px] rounded-[36px] py-[10px] px-[21px]"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <figure>
-              <img src="./public/logos/youtube.svg" alt="" />
-            </figure>
-          </a>
+        <!-- Nos podcasts (liens plateformes) -->
+        <div>
+          <p
+            x-html="nosPodcasts"
+            class="text-sm mb-7 smd:text-center smd:text-xl"
+            aria-describedby="podcast-platforms"
+          ></p>
+          <div class="grid place-items-center">
+            <div
+              class="grid grid-cols-[auto_auto] gap-[46px] place-items-center"
+              id="podcast-platforms"
+            >
+              <a
+                class="hover:-translate-y-2.5 transition-transform duration-300 ease-in-out"
+                href="https://www.arcom.fr/podcasts"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Écouter les podcasts sur Spotify"
+              >
+                <figure>
+                  <img
+                    src="./public/logos/spotify.svg"
+                    alt="Logo de Spotify"
+                    class="w-[75px] h-[75px]"
+                  />
+                </figure>
+              </a>
+              <a
+                href="https://www.arcom.fr/podcasts"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Écouter les podcasts sur Youtuve"
+              >
+                <figure>
+                  <img src="./public/logos/youtube.svg" alt="Logo de Youtuve" />
+                </figure>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
