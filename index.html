@@ -530,40 +530,64 @@
     </section>
 
     <!-- Newsletter -->
-    <section class="px-[15px] mb-[58px]">
-      <div class="bg-blue rounded-[12px] text-white py-[40px]">
+    <section
+      class="px-6 sm:px-9 pb-[58px] smd:px-9 lg:px-24 lg:pb-24"
+      aria-labelledby="newsletter-title"
+    >
+      <div
+        class="bg-blue rounded-[12px] text-white pt-[30px] pb-5 px-4 esm:px-5 max-w-[450px] justify-self-center w-full"
+      >
         <div
-          class="text-center mb-[40px]"
+          class="text-center mb-8 esm:mb-10"
           x-data="{newsletter: 'NEWSLETTER', newsletterTitle: 'Ne manquez plus nos actualités quotidiennes !'}"
         >
           <span
-            class="uppercase text-[13px] text-lightBlue mb-[8px]"
+            class="uppercase font-bold text-[15px] text-lightBlue mb-3"
             x-text="newsletter"
           ></span>
-          <h2 x-text="newsletterTitle"></h2>
+          <h2
+            class="font-bold"
+            x-text="newsletterTitle"
+            id="newsletter-title"
+          ></h2>
         </div>
         <!-- Formulaire -->
         <div class="grid place-items-center">
-          <form class="mb-[13px] w-[80%]">
+          <form
+            class="mb-5 w-full sm:w-[80%] max-w-[350px]"
+            x-data="{submit: 'S\'inscrire', ariaDescription: 'Inscrivez-vous pour recevoir nos actualités quotidiennes par email.'}"
+            aria-describedby="form-desc"
+          >
+            <p id="form-desc" x-text="ariaDescription" class="sr-only"></p>
             <div
-              class="bg-white rounded-[25px] py-[10px] pl-[22px] pr-[10px] grid grid-cols-[auto_auto] space-between"
-              x-data="{ email: 'Votre adresse e-mail', emailPlaceholder: 'Écris ton mail', submit: 'S\'inscrire' }"
+              class="bg-white rounded-[25px] py-[10px] pl-[22px] pr-[10px] grid grid-cols-[100px_auto] sm:grid-cols-[auto_auto] space-between"
+              x-data="{ email: 'Votre adresse e-mail', emailPlaceholder: 'Écris ton mail'}"
             >
               <label for="email" class="sr-only" x-text="email"></label>
               <input
-                class="placeholder-lightGray"
+                class="placeholder-lightGray text-blue"
                 type="email"
                 name="email"
                 id="email"
-                x-bind:placeholder="emailPlaceholder"
+                :placeholder="emailPlaceholder"
+                aria-required="true"
+                required
               />
               <button
-                class="bg-blue text-white text-[13px] rounded-[36px] py-[10px] px-[21px]"
+                class="bg-blue font-semibold text-white text-[13px] rounded-[36px] py-[10px] px-[21px] max-w-[100px] justify-self-end hidden esm:block"
                 type="submit"
+                aria-label="S'inscrire à la newsletter"
               >
                 <span x-text="submit"></span>
               </button>
             </div>
+            <button
+              class="bg-lightBlue font-semibold text-white text-[13px] rounded-[36px] py-[10px] px-[21px] esm:hidden mt-2"
+              type="submit"
+              aria-label="S'inscrire à la newsletter"
+            >
+              <span x-text="submit"></span>
+            </button>
           </form>
         </div>
         <div class="grid place-items-center">
@@ -571,8 +595,11 @@
             class="grid grid-cols-[auto_auto] gap-x-[8px]"
             x-data="{confidentialite: 'Confidentialité garantie'}"
           >
-            <img src="./public/img/pictogrammes/coche-valide.svg" />
-            <span class="text-[11px]" x-text="confidentialite"></span>
+            <img
+              src="./public/img/pictogrammes/coche-valide.svg"
+              alt="Icône coche validant la confidentialité"
+            />
+            <span class="text-[11px] pt-0.5" x-text="confidentialite"></span>
           </div>
         </div>
       </div>
