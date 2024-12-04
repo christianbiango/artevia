@@ -383,55 +383,81 @@
       </div>
     </section>
     <!-- Chiffres clés -->
-    <section class="px-[35px] text-white">
-      <div class="grid grid-cols-2 gap-5" x-data="keyNumbers">
-        <template x-for="(fact, index) in numbers" :key="index">
-          <div
-            class="bg-blue rounded-lg px-3 py-3"
-            :class="index === numbers.length - 1 ? 'col-span-2 grid grid-cols-[auto_auto] gap-5 place-items-center' : ''"
-          >
-            <div class="grid place-items-center">
-              <div class="relative">
-                <!-- Background Circle -->
-                <svg class="w-full h-full transform rotate-90">
-                  <circle
-                    cx="50%"
-                    cy="50%"
-                    r="46.5"
-                    stroke-width="10"
-                    fill="none"
-                    class="stroke-lightCircleBlue"
-                  />
-                </svg>
-                <!-- Progress Circle -->
-                <svg
-                  class="absolute top-0 left-0 w-full h-full transform rotate-90"
-                >
-                  <circle
-                    cx="50%"
-                    cy="50%"
-                    r="46.5"
-                    stroke-width="10"
-                    fill="none"
-                    stroke-dasharray="292.273"
-                    stroke-linecap="round"
-                    class="stroke-circleBlue"
-                    x-intersect.once="animateOnView(fact.animation)"
-                  />
-                </svg>
-                <div
-                  class="absolute inset-0 grid place-items-center text-[26px]"
-                >
-                  <span x-text="fact.num"></span>
+    <section
+      class="text-white px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 md:py-3 md:bg-blue"
+    >
+      <h2 id="key-numbers-title" class="sr-only">
+        Les français et l'information
+      </h2>
+      <div class="max-w-[1085px] justify-self-center w-full">
+        <div
+          class="grid grid-rows-3 smd:grid-cols-2 gap-5 esm:grid-rows-[auto_auto] md:grid-cols-3 md:grid-rows-1"
+          x-data="keyNumbers"
+          aria-labelledby="key-numbers-title"
+        >
+          <template x-for="(fact, index) in numbers" :key="index">
+            <div
+              class="bg-blue rounded-[21.48px] px-7 pt-3 pb-7 grid grid-rows-[auto_1fr]"
+              :class="index === numbers.length - 1 ? 'esm:col-span-2 esm::grid esm:grid-cols-[auto_auto] esm:gap-5 esm:place-items-center esm:grid-rows-none esm:py-0 sm:grid-cols-[114px_1fr] smd:grid-cols-[157px_1fr] md:grid-rows-[auto_1fr] md:grid-cols-none md:col-span-1 md:pb-7 md:pt-3 md:gap-4 md:place-items-start' : 'gap-4'"
+              role="group"
+              :aria-labelledby="'fact-title-' + index"
+              :aria-describedby="'fact-text-' + index"
+            >
+              <!-- Cercle -->
+              <div class="grid place-items-center">
+                <div class="relative" aria-hidden="true">
+                  <!-- Background Circle -->
+                  <svg
+                    class="w-full h-full transform rotate-90"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="50%"
+                      cy="50%"
+                      r="46.5"
+                      stroke-width="10"
+                      fill="none"
+                      class="stroke-lightCircleBlue"
+                    />
+                  </svg>
+                  <!-- Progress Circle -->
+                  <svg
+                    class="absolute top-0 left-0 w-full h-full transform rotate-90"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="50%"
+                      cy="50%"
+                      r="46.5"
+                      stroke-width="10"
+                      fill="none"
+                      stroke-dasharray="292.273"
+                      stroke-linecap="round"
+                      class="stroke-circleBlue"
+                      x-intersect.once="animateOnView(fact.animation)"
+                    />
+                  </svg>
+                  <div
+                    class="absolute inset-0 grid place-items-center text-[26px]"
+                    aria-hidden="true"
+                  >
+                    <span x-text="fact.num"></span>
+                  </div>
                 </div>
               </div>
+              <p
+                id="`fact-title-${index}`"
+                x-text="fact.num"
+                class="sr-only"
+              ></p>
+              <p
+                id="`fact-text-${index}`"
+                x-text="fact.text"
+                class="text-center font-semibold text-[12.49px]"
+              ></p>
             </div>
-            <p
-              x-text="fact.text"
-              :class="index !== numbers.length - 1 ? 'text-center' : ''"
-            ></p>
-          </div>
-        </template>
+          </template>
+        </div>
       </div>
     </section>
     <!-- Lisez nos articles -->
