@@ -7,8 +7,12 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css" />
     <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
+    ></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="app.js"></script>
+    <script src="./js/app.js"></script>
     <!-- Icons -->
     <link
       rel="icon"
@@ -28,178 +32,826 @@
     <!-- Manifest -->
     <link rel="manifest" href="manifest.json" />
   </head>
-  <body>
-    <header class="pt-[72.37px] pb-[28px]">
-      <div
-        x-data="{logoSlogan: 'Bien s\'unir pour mieux agir'}"
-        class="grid gap-y-3 place-items-center"
-      >
-        <figure>
-          <img
-            src="./public/logos/logo_unis.svg"
-            alt="Logo de la campagne de communication Unis pour mieux agir"
-          />
-        </figure>
-        <span class="text-blue leading-none" x-text="logoSlogan"></span>
+  <body class="mt-[158px] text-blue">
+    <header
+      x-data="navbar"
+      x-init="init()"
+      class="transition-all duration-[450ms] fixed top-0 grid place-items-center bg-white w-full z-50 rounded-b-xl shadow-navbar"
+      :class="{'h-[158px]': !scrolled, 'h-[100px] ': scrolled}"
+      role="banner"
+      aria-label="En-tête de la page de la campagne Unis"
+    >
+      <div class="transition-all duration-[450ms]" x-data="scrollToTop">
+        <div
+          @click="scrollToTop()"
+          class="grid gap-y-3 place-items-center cursor-pointer"
+          role="button"
+          tabindex="0"
+          aria-label="Retour en haut de la page"
+          x-data="{ logoSlogan: 'Bien s\'unir pour mieux agir' }"
+        >
+          <figure class="transition-all duration-[450ms]">
+            <img
+              src="./public/logos/logo_unis.svg"
+              alt="Logo de la campagne de communication Unis pour mieux agir"
+              :class="{'w-[150px]': !scrolled, 'w-[100px]': scrolled}"
+              class="transition-all duration-[450ms]"
+            />
+          </figure>
+          <span
+            x-text="logoSlogan"
+            :class="{'text-[12px]': scrolled, 'text-xl': !scrolled}"
+            class="text-blue leading-none transition-all duration-[450ms]"
+          ></span>
+        </div>
       </div>
     </header>
+
     <!-- Échanger pour mieux progresser -->
-    <section class="bg-blue pt-9 pl-8">
+    <section
+      class="smd:px-9 lg:px-24 pb-[72px] lg:pb-24"
+      id="section-progresser"
+      aria-labelledby="progresser-title"
+    >
       <div
-        class="text-white leading-none"
-        x-data="{
-            firstSectionH1: 'Échanger pour mieux <strong class=\'text-lightBlue\'>progresser</strong> !', firstSectionParagraph: 'Unis vous aide à engager des conversations apaisées.', firstSectionButton: 'En savoir plus'
-        }"
+        class="bg-blue pt-9 px-6 sm:px-12 smd:rounded-[49px] sm:grid sm:pt-12 sm:grid-rows-[auto_auto] sm:gap-[26px] smd:grid-rows-none smd:grid-cols-[1fr_1.3fr] smd:pr-4 smd:gap-x-12 smd:h-[24rem] md:h-[28rem] lg:pl-20 md:pt-[76px] max-w-[1085px] w-full lg:justify-self-center vlg:gap-0"
       >
-        <h1 class="text-4xl mb-[13px]" x-html="firstSectionH1"></h1>
-        <p class="text-lg mb-[45px]" x-text="firstSectionParagraph"></p>
-        <button
-          class="bg-opaqueWhite rounded-[37.6px] grid grid-cols-[auto_auto] gap-[7px] place-items-center py-[7px] px-[12.71px] mb-[26px]"
+        <div
+          class="text-white leading-none max-w-[300px] mb-[26px] sm:mb-0 md:max-w-full lg:mt-5"
+          x-data="{
+            firstSectionH1: 'Échanger pour mieux <strong class=\'text-lightBlue\'>progresser !</strong>', 
+            firstSectionParagraph: 'Unis vous aide à engager des conversations apaisées.', 
+            enSavoirPlus: 'En savoir plus'
+          }"
         >
-          <div class="rounded-full w-3 h-3 bg-white"></div>
-          <span
-            x-text="firstSectionButton"
-            class="text-[10.61px] leading-none"
-          ></span>
-        </button>
+          <h1
+            id="progresser-title"
+            class="text-4xl mb-[13px] smd:mb-[10px] md:max-w-[340px] lg:text-5xl lg:mb-[13px] vlg:max-w-full"
+            x-html="firstSectionH1"
+          ></h1>
+          <p
+            class="text-lg mb-[45px] smd:mb-[24px] smd:max-w-[230px] md:max-w-[290px] lg:text-xl"
+            x-text="firstSectionParagraph"
+          ></p>
+          <div x-data="scrollHandler">
+            <button
+              @click="scrollToSection($event)"
+              data-target="section-desinformation"
+              class="focus:outline-none focus:ring-2 focus:ring-lightBlue bg-opaqueWhite rounded-[37.6px] grid grid-cols-[auto_auto] gap-2 place-items-center py-2 px-[12.71px] group"
+              aria-label="En savoir plus sur la section désinformation"
+            >
+              <div
+                class="rounded-full w-3 h-3 bg-white transition-all duration-300 group-hover:bg-lightBlue"
+              ></div>
+              <span
+                x-text="enSavoirPlus"
+                class="text-[10.61px] leading-none lg:text-[13px]"
+              ></span>
+            </button>
+          </div>
+        </div>
+        <figure
+          class="justify-self-end sm:grid sm:justify-items-center smd:justify-items-end content-end w-full md:block max-w-[493px]"
+        >
+          <img
+            class="w-full aspect-[4/3]"
+            src="./public/img/characters/personnes-ensemble.svg"
+            alt="Illustration vectorisée représentant trois personnes discutant ensemble."
+          />
+        </figure>
       </div>
-      <figure class="justify-self-end">
-        <img
-          src="./public/img/characters/personnes-ensemble.svg"
-          alt="Illustration vectorisée représentant trois personnes discutant ensemble."
-        />
-      </figure>
     </section>
+
     <!-- Lutter contre la désinformation -->
     <section
-      class="pt-14 px-8 mb-11"
-      x-data="{ secondSectionH2: 'Lutter contre la <strong>désinformation</strong> !' }"
+      id="section-desinformation"
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
+      role="region"
+      aria-labelledby="desinformation-heading"
     >
-      <h2 x-html="secondSectionH2" class="text-blue text-2xl mb-11"></h2>
-      <div class="rounded-lg grid place-items-center">
-        <div class="rounded-lg overflow-hidden">
-          <iframe
-            class="w-[90vw] h-[216px]"
-            src="https://www.youtube.com/embed/D_AlkIJ8oU4"
-            title="Une landing page, c&#39;est quoi ? (définition, aide, lexique, tuto, explication)"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+      <div
+        class="w-full justify-self-center grid grid-rows-[auto_auto] gap-6 smd:grid-cols-[auto_1fr] smd:gap-x-[144px] max-w-[1085px]"
+        x-data="{ secondSectionH2: 'Lutter contre</br>la <strong>désinformation</strong> !' }"
+      >
+        <h2
+          id="desinformation-heading"
+          x-html="secondSectionH2"
+          class="text-2xl leading-7 smd:content-center lg:text-5xl"
+        ></h2>
+        <div class="grid place-items-center w-full">
+          <div class="rounded-[18px] overflow-hidden w-full">
+            <iframe
+              class="w-full h-[216px] esm:h-[280px] sm:h-[350px] smd:h-[324px] max-w-[524px]"
+              src="https://www.youtube.com/embed/D_AlkIJ8oU4"
+              title="Une vidéo expliquant ce qu'est une landing page"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              aria-describedby="desinformation-video-description"
+            ></iframe>
+          </div>
         </div>
       </div>
     </section>
+
     <!--  Un enjeu essentiel-->
-    <section class="px-8 mb-11">
+    <section
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
+      x-data="{ expanded: false }"
+      role="region"
+      aria-labelledby="essential-issue-heading"
+    >
       <div
-        class="mb-[23px]"
+        class="grid grid-rows-[auto_auto] place-items-start gap-6 max-w-[1085px] justify-self-center w-full"
         x-data="{
-            unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
-            unEnjeuEssentielParagraph: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', 
-          }"
+      unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
+      unEnjeuEssentielParagraphUn: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', unEnjeuEssentielParagraphDeux: 'Pour protéger nos sociétés et préserver la confiance, il est indispensable de développer un esprit critique, de s’appuyer sur des sources fiables et de promouvoir une culture de vérification des faits. Combattons ensemble la désinformation pour un avenir mieux informé et plus serein.'
+    }"
       >
-        <h2 class="text-2xl mb-[26px]" x-html="unEnjeuEssentiel"></h2>
-        <p class="text-sm" x-text="unEnjeuEssentielParagraph"></p>
+        <div class="grid grid-rows-[auto_auto] gap-6 md:w-[80%] max-w-[935px]">
+          <h2
+            id="essential-issue-heading"
+            class="text-2xl"
+            x-html="unEnjeuEssentiel"
+          ></h2>
+          <p
+            id="essential-issue-paragraph-1"
+            class="text-sm"
+            x-html="unEnjeuEssentielParagraphUn"
+          ></p>
+          <div x-show="expanded" x-transition id="essential-issue-paragraph-2">
+            <p class="text-sm" x-html="unEnjeuEssentielParagraphDeux"></p>
+          </div>
+        </div>
+        <button
+          @click="expanded = !expanded;"
+          class="bg-blue p-2.5 text-white rounded-lg grid grid-cols-[auto_auto] place-items-center gap-[10px]"
+          :aria-expanded="expanded"
+          aria-controls="essential-issue-paragraph-2"
+        >
+          <span x-text="expanded ? 'Voir moins' : 'Voir plus'"></span>
+          <img
+            :class="{'rotate-180' : expanded, 'rotate-0': !expanded}"
+            src="./public/img/pictogrammes/fleche.svg"
+            alt=""
+            aria-hidden="true"
+          />
+        </button>
       </div>
-      <button
-        x-data="{unEnjeuEssentielButton: 'Voir plus'}"
-        class="bg-blue p-2.5 text-white rounded-lg grid grid-cols-[auto_auto] place-items-center gap-[10px]"
-      >
-        <span x-text="unEnjeuEssentielButton"></span>
-        <img src="./public/img/pictogrammes/fleche.svg" />
-      </button>
     </section>
-    <!-- Newsletter -->
-    <section class="px-[15px] mb-[58px]">
-      <div class="bg-blue rounded-[12px] text-white py-[40px]">
+    <!-- Carousel -->
+    <section
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
+      id="carousel-section"
+      x-data="cardsSlider"
+      aria-labelledby="carousel-title"
+      role="region"
+    >
+      <div class="max-w-[1085px] justify-self-center w-full">
+        <h2 id="carousel-title" class="sr-only">Carrousel interactif</h2>
+        <!-- Titres -->
+        <div class="esm:grid esm:place-items-center">
+          <ul
+            class="grid grid-cols-2 grid-rows-2 esm:grid-cols-4 esm:grid-rows-none auto-rows gap-6 place-items-center mb-8"
+            role="tablist"
+          >
+            <template x-for="(title, index) in cardsTitles" :key="index">
+              <li role="presentation">
+                <button
+                  x-text="title"
+                  :class="{'font-bold': index === activeIndex, 'text-opaqueLightBlue': index !== activeIndex}"
+                  @click="scrollToCard(index)"
+                  class="text-[10.72px] transition-all duration-300 uppercase text-nowrap cursor-pointer"
+                  role="tab"
+                  :aria-selected="index === activeIndex"
+                  :aria-controls="`card-${index}`"
+                  :tabindex="index === activeIndex ? 0 : -1"
+                ></button>
+              </li>
+            </template>
+          </ul>
+        </div>
+
+        <!-- Cartes -->
         <div
-          class="text-center mb-[40px]"
+          class="overflow-auto grid grid-flow-col gap-[69px] pb-5 smd:px-[100px]"
+          @scroll="detectActiveCard"
+          id="cards-container"
+          role="tablist"
+        >
+          <template x-for="(card, index) in cardsInformation" :key="index">
+            <div
+              data-element="card"
+              card-id="index"
+              class="rounded-[20.43px] px-6 pt-[30px] shadow-cards min-w-[283.02px] w-[283.02px] esm:min-w-[326.02px] esm:w-[326.02] md:min-w-[400px]"
+              :class="index === 2 && 'grid grid-rows-[auto_1fr] place-items-center'"
+              :id="'card-' + index"
+              role="tabpanel"
+              :aria-labelledby="'tab-' + index"
+            >
+              <div>
+                <h3 class="mb-6 text-sm" x-html="card.title"></h3>
+                <p x-html="card.content" class="text-sm"></p>
+              </div>
+              <figure class="pt-[7px]">
+                <img
+                  :src="card.image"
+                  :alt="card.alt"
+                  class="justify-self-center"
+                />
+              </figure>
+            </div>
+          </template>
+        </div>
+
+        <!-- Bullets points -->
+        <div class="grid place-items-center mt-[21px]">
+          <div
+            class="grid grid-cols-[auto_auto_auto_auto] gap-4 place-items-center"
+            aria-label="Navigation entre les cartes"
+            role="navigation"
+          >
+            <template x-for="(_, o) in cardsTitles" :key="o">
+              <button
+                class="rounded-full w-[7px] h-[7px]"
+                :class="o === activeIndex ? 'bg-pink' : 'bg-blue'"
+                @click="scrollToCard(o)"
+                :aria-label="'Afficher la carte ' + (o + 1)"
+                :aria-current="o === activeIndex ? 'true' : null"
+              ></button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Podcast du jour -->
+    <section
+      x-data="{nosPodcasts: 'Retrouvez tous nos podcasts sur :'}"
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
+      aria-labelledby="section-podcasts-title"
+    >
+      <div class="max-w-[1085px] justify-self-center w-full">
+        <div x-data="{podcastH2: 'Le podcast <strong>du jour</strong>'}">
+          <h2
+            class="text-2xl mb-7"
+            x-html="podcastH2"
+            id="section-podcasts-title"
+          ></h2>
+        </div>
+        <!-- Le podcast-->
+        <div class="esm:pl-3">
+          <div
+            class="bg-podcastGray rounded-[20px] py-6 pl-[18px] pr-[10px] grid grid-rows-[auto_auto] esm:grid-cols-[3rem_1fr] smd:grid-cols-[70px_1fr] esm:grid-rows-none gap-[17px] place-items-center max-w-[500px] w-full mb-[47px]"
+            role="region"
+            aria-labelledby="podcast-title"
+          >
+            <div>
+              <figure>
+                <img
+                  class="w-12 h-12 smd:w-[70px] smd:h-[70px]"
+                  src="./public/logos/mini-logo.svg"
+                  alt="Logo de la campagne de communication Unis pour mieux agir"
+                />
+              </figure>
+            </div>
+            <div class="w-full" x-data="{title: 'Le dialogue'}">
+              <h3
+                x-text="title"
+                class="mb-3 font-bold text-sm smd:text-lg"
+                id="podcast-title"
+              ></h3>
+              <div class="grid grid-cols-[20px_auto] gap-3 place-items-center">
+                <figure>
+                  <img
+                    class="cursor-pointer"
+                    role="button"
+                    id="playBtn"
+                    src="./public/img/pictogrammes/play.svg"
+                    alt="Pictogramme pour démarrer ou arrêter le podcast"
+                  />
+                </figure>
+                <div
+                  class="w-full grid grid-cols-[1fr_50px] place-items-center"
+                >
+                  <div class="w-full" id="waveform"></div>
+                  <span id="timer" aria-live="off"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Nos podcasts (liens plateformes) -->
+        <div>
+          <p
+            x-html="nosPodcasts"
+            class="text-sm mb-7 smd:text-center smd:text-xl"
+            aria-describedby="podcast-platforms"
+          ></p>
+          <div class="grid place-items-center">
+            <div
+              class="grid grid-cols-[auto_auto] gap-[46px] place-items-center"
+              id="podcast-platforms"
+            >
+              <a
+                class="hover:-translate-y-2.5 transition-transform duration-300 ease-in-out"
+                href="https://www.arcom.fr/podcasts"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Écouter les podcasts sur Spotify"
+              >
+                <figure>
+                  <img
+                    src="./public/logos/spotify.svg"
+                    alt="Logo de Spotify"
+                    class="w-[75px] h-[75px]"
+                  />
+                </figure>
+              </a>
+              <a
+                href="https://www.arcom.fr/podcasts"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Écouter les podcasts sur Youtuve"
+              >
+                <figure>
+                  <img src="./public/logos/youtube.svg" alt="Logo de Youtuve" />
+                </figure>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Chiffres clés -->
+    <section
+      class="text-white px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 md:py-3 md:bg-blue"
+    >
+      <h2 id="key-numbers-title" class="sr-only">
+        Les français et l'information
+      </h2>
+      <div class="max-w-[1085px] justify-self-center w-full">
+        <div
+          class="grid grid-rows-3 smd:grid-cols-2 gap-5 esm:grid-rows-[auto_auto] md:grid-cols-3 md:grid-rows-1"
+          x-data="keyNumbers"
+          aria-labelledby="key-numbers-title"
+        >
+          <template x-for="(fact, index) in numbers" :key="index">
+            <div
+              class="bg-blue rounded-[21.48px] px-7 pt-3 pb-7 grid grid-rows-[auto_1fr]"
+              :class="index === numbers.length - 1 ? 'esm:col-span-2 esm::grid esm:grid-cols-[auto_auto] esm:gap-5 esm:place-items-center esm:grid-rows-none esm:py-0 sm:grid-cols-[114px_1fr] smd:grid-cols-[157px_1fr] md:grid-rows-[auto_1fr] md:grid-cols-none md:col-span-1 md:pb-7 md:pt-3 md:gap-4 md:place-items-start' : 'gap-4'"
+              role="group"
+              :aria-labelledby="'fact-title-' + index"
+              :aria-describedby="'fact-text-' + index"
+            >
+              <!-- Cercle -->
+              <div class="grid place-items-center">
+                <div class="relative" aria-hidden="true">
+                  <!-- Background Circle -->
+                  <svg
+                    class="w-full h-full transform rotate-90"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="50%"
+                      cy="50%"
+                      r="46.5"
+                      stroke-width="10"
+                      fill="none"
+                      class="stroke-lightCircleBlue"
+                    />
+                  </svg>
+                  <!-- Progress Circle -->
+                  <svg
+                    class="absolute top-0 left-0 w-full h-full transform rotate-90"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="50%"
+                      cy="50%"
+                      r="46.5"
+                      stroke-width="10"
+                      fill="none"
+                      stroke-dasharray="292.273"
+                      stroke-linecap="round"
+                      class="stroke-circleBlue"
+                      x-intersect.once="animateOnView(fact.animation)"
+                    />
+                  </svg>
+                  <div
+                    class="absolute inset-0 grid place-items-center text-[26px]"
+                    aria-hidden="true"
+                  >
+                    <span x-text="fact.num"></span>
+                  </div>
+                </div>
+              </div>
+              <p
+                id="`fact-title-${index}`"
+                x-text="fact.num"
+                class="sr-only"
+              ></p>
+              <p
+                id="`fact-text-${index}`"
+                x-text="fact.text"
+                class="text-center font-semibold text-[12.49px]"
+              ></p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+    <!-- Lisez nos articles -->
+    <section
+      class="px-6 sm:px-9 pb-[72px] md:pt-[96px] smd:px-9 lg:px-24 lg:pb-24"
+      aria-labelledby="articles-title"
+    >
+      <div class="max-w-[700px] justify-self-start w-full">
+        <div
+          x-data="{
+            lisezNosArticles: 'Lisez nos <span class=\'text-pink\'>articles</span>'
+          }"
+        >
+          <h2
+            id="articles-title"
+            class="text-2xl font-semibold"
+            x-html="lisezNosArticles"
+          ></h2>
+        </div>
+        <div
+          x-data="postsSlider"
+          class="overflow-auto grid grid-flow-col gap-[69px] py-10"
+          role="list"
+          aria-label="Liste des articles"
+        >
+          <template x-for="(post, index) in posts" :key="index">
+            <article
+              class="min-w-[253px]"
+              role="listitem"
+              :aria-labelledby="'post-title-' + index"
+            >
+              <div class="inline-block relative">
+                <figure>
+                  <img
+                    :src="post.imageLink"
+                    :alt="post.alt"
+                    class="w-[260px] h-[212px]"
+                  />
+                </figure>
+                <a
+                  :href="post.postLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-[51px] h-[51px] rounded-full grid place-items-center absolute bottom-0 right-0 z-10 transition-all duration-300 ease-in-out hover:translate-x-2"
+                  :class="{'bg-pink hover:bg-lightBlue': index % 2 === 0, 'bg-lightBlue hover:bg-pink': index % 2 !== 0}"
+                  aria-label="`Lire l'article intitulé : ${post.title}`"
+                >
+                  <figure>
+                    <img
+                      :src="post.buttonImg"
+                      alt=""
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  </figure>
+                </a>
+              </div>
+              <h3
+                class="text-lg mb-3 mt-5 font-bold"
+                x-text="post.title"
+                id="`post-title-${index}`"
+              ></h3>
+              <p class="text-sm mb-[25px] w-[80%]" x-text="post.excerpt"></p>
+              <a
+                :href="post.postLink"
+                x-text="post.buttonText"
+                class="bg-blue text-white text-[10px] rounded-lg uppercase font-semibold py-[10px] px-[18px] transition-all duration-300 hover:bg-pink"
+                :class="{'bg-blue hover:bg-pink': index % 2 === 0, 'bg-pink hover:bg-blue': index % 2 !== 0}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="`Lire l'article intitulé : ${post.title}`"
+              ></a>
+            </article>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section
+      class="px-6 sm:px-9 pb-[58px] smd:px-9 lg:px-24 lg:pb-24"
+      aria-labelledby="newsletter-title"
+    >
+      <div
+        class="bg-blue rounded-[12px] text-white pt-[30px] pb-5 px-4 esm:px-5 max-w-[450px] justify-self-center w-full"
+      >
+        <div
+          class="text-center mb-8 esm:mb-10"
           x-data="{newsletter: 'NEWSLETTER', newsletterTitle: 'Ne manquez plus nos actualités quotidiennes !'}"
         >
           <span
-            class="uppercase text-[13px] text-lightBlue mb-[8px]"
+            class="uppercase font-bold text-[15px] text-lightBlue mb-3"
             x-text="newsletter"
           ></span>
-          <h2 x-text="newsletterTitle"></h2>
+          <h2
+            class="font-bold"
+            x-text="newsletterTitle"
+            id="newsletter-title"
+          ></h2>
         </div>
         <!-- Formulaire -->
         <div class="grid place-items-center">
-          <form class="mb-[13px] w-[80%]">
+          <form
+            @submit.prevent="formComplete = true"
+            class="mb-5 w-full sm:w-[80%] max-w-[350px]"
+            x-data="{submit: 'S\'inscrire', ariaDescription: 'Inscrivez-vous pour recevoir nos actualités quotidiennes par email.'}"
+            aria-describedby="form-desc"
+          >
+            <p id="form-desc" x-text="ariaDescription" class="sr-only"></p>
             <div
-              class="bg-white rounded-[25px] py-[10px] pl-[22px] pr-[10px] grid grid-cols-[auto_auto] space-between"
-              x-data="{ email: 'Votre adresse e-mail', emailPlaceholder: 'Écris ton mail', submit: 'S\'inscrire' }"
+              class="bg-white rounded-[25px] py-[10px] pl-[22px] pr-[10px] grid grid-cols-[100px_auto] sm:grid-cols-[auto_auto] space-between"
+              x-data="{ email: 'Votre adresse e-mail', emailPlaceholder: 'Écris ton mail'}"
             >
               <label for="email" class="sr-only" x-text="email"></label>
               <input
-                class="placeholder-lightGray"
+                class="placeholder-lightGray text-blue"
                 type="email"
                 name="email"
                 id="email"
-                x-bind:placeholder="emailPlaceholder"
+                :placeholder="emailPlaceholder"
+                aria-required="true"
+                required
               />
               <button
-                class="bg-blue text-white text-[13px] rounded-[36px] py-[10px] px-[21px]"
+                class="bg-blue font-semibold text-white text-[13px] rounded-[36px] py-[10px] px-[21px] max-w-[100px] justify-self-end hidden esm:block"
                 type="submit"
+                aria-label="S'inscrire à la newsletter"
               >
                 <span x-text="submit"></span>
               </button>
             </div>
+            <button
+              class="bg-lightBlue font-semibold text-white text-[13px] rounded-[36px] py-[10px] px-[21px] esm:hidden mt-2"
+              type="submit"
+              aria-label="S'inscrire à la newsletter"
+            >
+              <span x-text="submit"></span>
+            </button>
           </form>
+          <div
+            x-show="formComplete"
+            class="mb-3 p-3 rounded-3xl bg-white text-blue text-center font-semibold"
+          >
+            <p>Vous êtes bien inscrit à notre Newsletter !</p>
+          </div>
         </div>
         <div class="grid place-items-center">
           <div
             class="grid grid-cols-[auto_auto] gap-x-[8px]"
             x-data="{confidentialite: 'Confidentialité garantie'}"
           >
-            <img src="./public/img/pictogrammes/coche-valide.svg" />
-            <span class="text-[11px]" x-text="confidentialite"></span>
+            <img
+              src="./public/img/pictogrammes/coche-valide.svg"
+              alt="Icône coche validant la confidentialité"
+            />
+            <span class="text-[11px] pt-0.5" x-text="confidentialite"></span>
           </div>
         </div>
       </div>
     </section>
     <!-- Footer -->
-    <footer class="bg-gray pt-[31px]">
-      <div class="pl-[34px]">
-        <div
-          x-data="{logoSlogan: 'Bien s\'unir pour mieux agir'}"
-          class="grid gap-y-[10px] place-items-center mb-[22px]"
-        >
-          <figure>
-            <img
-              class="w[120px] h-[40px]"
-              src="./public/logos/logo_unis.svg"
-              alt="Logo de la campagne de communication Unis pour mieux agir"
-            />
-          </figure>
-          <span
-            class="text-blue leading-none text-[10px]"
-            x-text="logoSlogan"
-          ></span>
-        </div>
-        <div>
-          <ul x-data="{contact: 'Nous contacter'}">
-            <li x-text="contact"></li>
-            <li></li>
-            <li></li>
-          </ul>
+    <footer aria-labelledby="footer-title">
+      <div
+        class="pl-[34px] bg-gray py-10 sm:pb-5 smd:pb-6 px-6 sm:px-9 smd:px-9 lg:px-24"
+      >
+        <div class="max-w-[1085px] w-full justify-self-center">
+          <div
+            class="sm:grid sm:grid-cols-2 smd:grid-cols-3 sm:gap-[65px] sm:place-items-center md:items-end"
+          >
+            <!-- Logo -->
+            <div
+              x-data="{logoSlogan: 'Bien s\'unir pour mieux agir'}"
+              class="grid gap-y-[10px] place-items-center mb-8 smd:mb-0 md:mb-1"
+            >
+              <figure>
+                <img
+                  class="w-[139px] h-auto"
+                  src="./public/logos/logo_unis.svg"
+                  alt="Logo de la campagne de communication Unis pour mieux agir"
+                />
+              </figure>
+              <span class="leading-none text-[12px]" x-text="logoSlogan"></span>
+            </div>
+            <!-- Nous contacter -->
+            <div
+              x-data="{contactTitle: 'Nous contacter'}"
+              class="smd:col-span-2 md:col-span-1"
+            >
+              <h2
+                class="text-lg font-bold mb-[13px]"
+                x-text="contactTitle"
+                id="footer-title"
+              ></h2>
+              <ul
+                x-data="footer"
+                class="smd:grid smd:grid-cols-2 smd:gap-x-[65px] smd:place-items-center md:block"
+              >
+                <div>
+                  <li class="mb-2.5 smd:mb-0">
+                    <a
+                      class="hover:text-lightBlue transition-all duration-300"
+                      :href="navItems.adresse.link"
+                      :aria-label="`Lien vers l'adresse ${navItems.adresse.title}`"
+                      x-html="navItems.adresse.title"
+                      :aria-label="`Adresse : Cliquez pour accéder à ${navItems.adresse.title}`"
+                    ></a>
+                  </li>
+                </div>
+                <div class="md:hidden">
+                  <li class="grid grid-cols-[15px_1fr] gap-3 items-center">
+                    <figure>
+                      <img
+                        class="w-[15px] h-[15px]"
+                        src="./public/img/pictogrammes/telephone.svg"
+                        alt="Icône téléphone"
+                      />
+                    </figure>
+                    <a
+                      class="hover:text-lightBlue transition-colors duration-300"
+                      :href="navItems.contact.link"
+                      :aria-label="`Lien vers le numéro de téléphone ${navItems.contact.title}`"
+                      x-text="navItems.contact.title"
+                    ></a>
+                  </li>
+                  <li class="grid grid-cols-[15px_1fr] gap-3 items-center">
+                    <figure>
+                      <img
+                        class="w-[15px] h-[15px]"
+                        src="./public/img/pictogrammes/mail.svg"
+                        alt="Icône d'une enveloppe"
+                      />
+                    </figure>
+                    <a
+                      class="hover:text-lightBlue transition-colors duration-300"
+                      :href="navItems.site.link"
+                      :aria-label="`Lien vers le site ${navItems.site.title}`"
+                      x-text="navItems.site.title"
+                    ></a>
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div class="hidden md:block" x-data="footer">
+              <ul>
+                <li class="grid grid-cols-[15px_1fr] gap-3 items-center">
+                  <figure>
+                    <img
+                      class="w-[15px] h-[15px]"
+                      src="./public/img/pictogrammes/telephone.svg"
+                      alt="Icône téléphone"
+                    />
+                  </figure>
+                  <a
+                    class="hover:text-lightBlue transition-colors duration-300"
+                    :href="navItems.contact.link"
+                    :aria-label="`Lien vers le numéro de téléphone ${navItems.contact.title}`"
+                    x-text="navItems.contact.title"
+                  ></a>
+                </li>
+                <li class="grid grid-cols-[15px_1fr] gap-3 items-center">
+                  <figure>
+                    <img
+                      class="w-[15px] h-[15px]"
+                      src="./public/img/pictogrammes/mail.svg"
+                      alt="Icône d'une enveloppe"
+                    />
+                  </figure>
+                  <a
+                    class="hover:text-lightBlue transition-colors duration-300"
+                    :href="navItems.site.link"
+                    :aria-label="`Lien vers le site ${navItems.site.title}`"
+                    x-text="navItems.site.title"
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Legals -->
+          <div class="mt-8 smd:mt-10 sm:grid sm:place-items-center">
+            <ul
+              x-data="footer"
+              class="sm:grid sm:grid-cols-2 sm:place-items-center md:gap-10"
+            >
+              <li class="mb-2.5 sm:mb-0">
+                <a
+                  class="hover:text-lightBlue transition-colors duration-300"
+                  :href="legals.mentionsLegales.link"
+                  :aria-label="`Ouverture de la popup contenant les mentions légales ${legals.mentionsLegales.title}`"
+                  x-text="navItems.mentionsLegales.title"
+                ></a>
+              </li>
+              <li>
+                <a
+                  class="hover:text-lightBlue transition-colors duration-300"
+                  :href="legals.PolitiqueDeConfidentialité.link"
+                  :aria-label="`Ouverture de la popup contenant notre politique de confidentialité ${legals.PolitiqueDeConfidentialité.title}`"
+                  x-text="navItems.PolitiqueDeConfidentialité.title"
+                ></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div
-        class="text-white bg-blue h-[30px] text-[10px] grid place-items-center"
-      >
-        <div
-          class="grid grid-cols-[auto_auto_auto_auto_auto] gap-x-[8px] place-items-center"
-          x-data="{ year: '2024', copyright: '©', site: 'artevia.netlify.app', separator: '|', rights: 'Tous droits réservés' }"
-        >
-          <span x-text="year"></span>
-          <span x-text="copyright"></span>
-          <span x-text="site"></span>
-          <span x-text="separator"></span>
-          <span x-text="rights"></span>
+      <!-- Bandeau bleu -->
+      <div class="text-white bg-blue py-5 text-[10px] grid place-items-center">
+        <!-- Copyright -->
+        <div class="smd:grid smd:grid-cols-2">
+          <div
+            class="grid grid-cols-[auto_auto_auto_auto_auto] gap-x-[8px] place-items-center mb-2.5 smd:mb-0"
+            x-data="footer"
+          >
+            <template x-for="(item) in copyright">
+              <span x-text="item" class="smd:text-[13px]"></span>
+            </template>
+          </div>
+          <!-- Socials -->
+          <div
+            class="grid col-start-3 col-end-4 grid-cols-3 place-items-center gap-5"
+          >
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lien vers Instagram"
+            >
+              <img
+                src="./public/socials/instagram.svg"
+                alt="Logo d'Instagram"
+                class="h-[36px] w-[36px]"
+              />
+            </a>
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lien vers Facebook"
+            >
+              <img
+                src="./public/socials/facebook.svg"
+                alt="Logo de Facebook"
+                class="h-[36px] w-[36px]"
+              />
+            </a>
+            <a
+              href="https://www.tiktok.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lien vers Tiktok"
+            >
+              <img
+                src="./public/socials/tiktok.svg"
+                alt="Logo de tiktok"
+                class="h-[36px] w-[36px]"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
+
+    <!-- Wavesurfer -->
+    <script src="./js/wavesurfer.js" type="module"></script>
+
+    <!-- Axeptio -->
+    <script>
+      window.axeptioSettings = {
+        clientId: "674f54aae5daaf570eff2c40",
+        cookiesVersion: "artevia-fr-EU",
+        googleConsentMode: {
+          default: {
+            analytics_storage: "denied",
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            wait_for_update: 500,
+          },
+        },
+      };
+      (function (d, s) {
+        var t = d.getElementsByTagName(s)[0],
+          e = d.createElement(s);
+        e.async = true;
+        e.src = "//static.axept.io/sdk.js";
+        t.parentNode.insertBefore(e, t);
+      })(document, "script");
+      void 0 === window._axcb && (window._axcb = []);
+      window._axcb.push(function (axeptio) {
+        axeptio.on("cookies:complete", function (choices) {
+          // Choices is a JS object containing the vendors activated or not by the user.
+        });
+      });
+    </script>
 
     <!-- Service Worker -->
     <script>

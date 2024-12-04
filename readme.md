@@ -35,3 +35,11 @@ Tester la présence des favicons en local :
 `npx tailwindcss init`
 
 `npx tailwindcss -i ./tailwind.css -o ./css/style.css --watch`
+
+## Déploiement automatique
+
+[https://artevia.netlify.app/](https://artevia.netlify.app/)
+
+## Alpine versionning
+
+As we're using this script to use Alpine `<script src="//unpkg.com/alpinejs" defer></script>` we always use the latest version.
