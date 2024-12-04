@@ -325,6 +325,8 @@
               <div class="grid grid-cols-[20px_auto] gap-3 place-items-center">
                 <figure>
                   <img
+                    class="cursor-pointer"
+                    role="button"
                     id="playBtn"
                     src="./public/img/pictogrammes/play.svg"
                     alt="Pictogramme pour démarrer ou arrêter le podcast"
@@ -561,6 +563,7 @@
         <!-- Formulaire -->
         <div class="grid place-items-center">
           <form
+            @submit.prevent="formComplete = true"
             class="mb-5 w-full sm:w-[80%] max-w-[350px]"
             x-data="{submit: 'S\'inscrire', ariaDescription: 'Inscrivez-vous pour recevoir nos actualités quotidiennes par email.'}"
             aria-describedby="form-desc"
@@ -596,6 +599,12 @@
               <span x-text="submit"></span>
             </button>
           </form>
+          <div
+            x-show="formComplete"
+            class="mb-3 p-3 rounded-3xl bg-white text-blue text-center font-semibold"
+          >
+            <p>Vous êtes bien inscrit à notre Newsletter !</p>
+          </div>
         </div>
         <div class="grid place-items-center">
           <div
@@ -612,7 +621,7 @@
       </div>
     </section>
     <!-- Footer -->
-    <footer>
+    <footer aria-labelledby="footer-title">
       <div
         class="pl-[34px] bg-gray py-10 sm:pb-5 smd:pb-6 px-6 sm:px-9 smd:px-9 lg:px-24"
       >
@@ -642,6 +651,7 @@
               <h2
                 class="text-lg font-bold mb-[13px]"
                 x-text="contactTitle"
+                id="footer-title"
               ></h2>
               <ul
                 x-data="footer"
@@ -654,11 +664,19 @@
                       :href="navItems.adresse.link"
                       :aria-label="`Lien vers l'adresse ${navItems.adresse.title}`"
                       x-html="navItems.adresse.title"
+                      :aria-label="`Adresse : Cliquez pour accéder à ${navItems.adresse.title}`"
                     ></a>
                   </li>
                 </div>
                 <div class="md:hidden">
-                  <li>
+                  <li class="grid grid-cols-[15px_1fr] gap-3 items-center">
+                    <figure>
+                      <img
+                        class="w-[15px] h-[15px]"
+                        src="./public/img/pictogrammes/telephone.svg"
+                        alt="Icône téléphone"
+                      />
+                    </figure>
                     <a
                       class="hover:text-lightBlue transition-colors duration-300"
                       :href="navItems.contact.link"
@@ -666,7 +684,14 @@
                       x-text="navItems.contact.title"
                     ></a>
                   </li>
-                  <li>
+                  <li class="grid grid-cols-[15px_1fr] gap-3 items-center">
+                    <figure>
+                      <img
+                        class="w-[15px] h-[15px]"
+                        src="./public/img/pictogrammes/mail.svg"
+                        alt="Icône d'une enveloppe"
+                      />
+                    </figure>
                     <a
                       class="hover:text-lightBlue transition-colors duration-300"
                       :href="navItems.site.link"
@@ -677,9 +702,16 @@
                 </div>
               </ul>
             </div>
-            <div class="md:block" x-data="footer">
+            <div class="hidden md:block" x-data="footer">
               <ul>
-                <li>
+                <li class="grid grid-cols-[15px_1fr] gap-3 items-center">
+                  <figure>
+                    <img
+                      class="w-[15px] h-[15px]"
+                      src="./public/img/pictogrammes/telephone.svg"
+                      alt="Icône téléphone"
+                    />
+                  </figure>
                   <a
                     class="hover:text-lightBlue transition-colors duration-300"
                     :href="navItems.contact.link"
@@ -687,7 +719,14 @@
                     x-text="navItems.contact.title"
                   ></a>
                 </li>
-                <li>
+                <li class="grid grid-cols-[15px_1fr] gap-3 items-center">
+                  <figure>
+                    <img
+                      class="w-[15px] h-[15px]"
+                      src="./public/img/pictogrammes/mail.svg"
+                      alt="Icône d'une enveloppe"
+                    />
+                  </figure>
                   <a
                     class="hover:text-lightBlue transition-colors duration-300"
                     :href="navItems.site.link"
@@ -716,7 +755,7 @@
                 <a
                   class="hover:text-lightBlue transition-colors duration-300"
                   :href="legals.PolitiqueDeConfidentialité.link"
-                  :aria-label="`Ouverture de la popup contenant les mentions légales ${legals.PolitiqueDeConfidentialité.title}`"
+                  :aria-label="`Ouverture de la popup contenant notre politique de confidentialité ${legals.PolitiqueDeConfidentialité.title}`"
                   x-text="navItems.PolitiqueDeConfidentialité.title"
                 ></a>
               </li>
@@ -725,22 +764,94 @@
         </div>
       </div>
       <!-- Bandeau bleu -->
-      <div
-        class="text-white bg-blue h-[30px] text-[10px] grid place-items-center"
-      >
-        <div
-          class="grid grid-cols-[auto_auto_auto_auto_auto] gap-x-[8px] place-items-center"
-          x-data="footer"
-        >
-          <template x-for="(item) in copyright">
-            <span x-text="item"></span>
-          </template>
+      <div class="text-white bg-blue py-5 text-[10px] grid place-items-center">
+        <!-- Copyright -->
+        <div class="smd:grid smd:grid-cols-2">
+          <div
+            class="grid grid-cols-[auto_auto_auto_auto_auto] gap-x-[8px] place-items-center mb-2.5 smd:mb-0"
+            x-data="footer"
+          >
+            <template x-for="(item) in copyright">
+              <span x-text="item" class="smd:text-[13px]"></span>
+            </template>
+          </div>
+          <!-- Socials -->
+          <div
+            class="grid col-start-3 col-end-4 grid-cols-3 place-items-center gap-5"
+          >
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lien vers Instagram"
+            >
+              <img
+                src="./public/socials/instagram.svg"
+                alt="Logo d'Instagram"
+                class="h-[36px] w-[36px]"
+              />
+            </a>
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lien vers Facebook"
+            >
+              <img
+                src="./public/socials/facebook.svg"
+                alt="Logo de Facebook"
+                class="h-[36px] w-[36px]"
+              />
+            </a>
+            <a
+              href="https://www.tiktok.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Lien vers Tiktok"
+            >
+              <img
+                src="./public/socials/tiktok.svg"
+                alt="Logo de tiktok"
+                class="h-[36px] w-[36px]"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
 
     <!-- Wavesurfer -->
     <script src="./js/wavesurfer.js" type="module"></script>
+
+    <!-- Axeptio -->
+    <script>
+      window.axeptioSettings = {
+        clientId: "674f54aae5daaf570eff2c40",
+        cookiesVersion: "artevia-fr-EU",
+        googleConsentMode: {
+          default: {
+            analytics_storage: "denied",
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            wait_for_update: 500,
+          },
+        },
+      };
+      (function (d, s) {
+        var t = d.getElementsByTagName(s)[0],
+          e = d.createElement(s);
+        e.async = true;
+        e.src = "//static.axept.io/sdk.js";
+        t.parentNode.insertBefore(e, t);
+      })(document, "script");
+      void 0 === window._axcb && (window._axcb = []);
+      window._axcb.push(function (axeptio) {
+        axeptio.on("cookies:complete", function (choices) {
+          // Choices is a JS object containing the vendors activated or not by the user.
+        });
+      });
+    </script>
 
     <!-- Service Worker -->
     <script>
