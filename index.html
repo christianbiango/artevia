@@ -163,7 +163,7 @@
       aria-labelledby="essential-issue-heading"
     >
       <div
-        class="grid grid-rows-[auto_auto] place-items-start gap-6"
+        class="grid grid-rows-[auto_auto] place-items-start gap-6 max-w-[1085px] justify-self-center w-full"
         x-data="{
       unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
       unEnjeuEssentielParagraphUn: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', unEnjeuEssentielParagraphDeux: 'Pour protéger nos sociétés et préserver la confiance, il est indispensable de développer un esprit critique, de s’appuyer sur des sources fiables et de promouvoir une culture de vérification des faits. Combattons ensemble la désinformation pour un avenir mieux informé et plus serein.'
@@ -201,54 +201,87 @@
       </div>
     </section>
     <!-- Carousel -->
-    <section class="px-5 py-5" id="carousel-section" x-data="cardsSlider">
-      <!-- Titres -->
-      <ul class="grid grid-cols-4 gap-4 place-items-center">
-        <template x-for="(title, index) in cardsTitles" :key="index">
-          <li>
-            <button
-              x-text="title"
-              :class="{'font-bold': index === activeIndex, 'text-opaqueLightBlue': index !== activeIndex}"
-              @click="scrollToCard(index)"
-              class="transition-all duration-300 uppercase"
-            ></button>
-          </li>
-        </template>
-      </ul>
-
-      <!-- Cartes -->
-      <div
-        class="overflow-auto grid grid-flow-col gap-[69px]"
-        @scroll="detectActiveCard"
-        id="cards-container"
-      >
-        <template x-for="(card, index) in cardsInformation" :key="index">
-          <div
-            data-element="card"
-            card-id="index"
-            class="rounded-lg px-5 py-5 shadow-cards min-w-[326px]"
+    <section
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
+      id="carousel-section"
+      x-data="cardsSlider"
+      aria-labelledby="carousel-title"
+      role="region"
+    >
+      <div class="max-w-[1085px] justify-self-center w-full">
+        <h2 id="carousel-title" class="sr-only">Carrousel interactif</h2>
+        <!-- Titres -->
+        <div class="esm:grid esm:place-items-center">
+          <ul
+            class="grid grid-cols-2 grid-rows-2 esm:grid-cols-4 esm:grid-rows-none auto-rows gap-6 place-items-center mb-8"
+            role="tablist"
           >
-            <h3 class="mb-2.5" x-html="card.title"></h3>
-            <p x-html="card.content"></p>
-            <figure>
-              <img :src="card.image" alt="" class="justify-self-center" />
-            </figure>
-          </div>
-        </template>
-      </div>
+            <template x-for="(title, index) in cardsTitles" :key="index">
+              <li role="presentation">
+                <button
+                  x-text="title"
+                  :class="{'font-bold': index === activeIndex, 'text-opaqueLightBlue': index !== activeIndex}"
+                  @click="scrollToCard(index)"
+                  class="text-[10.72px] transition-all duration-300 uppercase text-nowrap cursor-pointer"
+                  role="tab"
+                  :aria-selected="index === activeIndex"
+                  :aria-controls="`card-${index}`"
+                  :tabindex="index === activeIndex ? 0 : -1"
+                ></button>
+              </li>
+            </template>
+          </ul>
+        </div>
 
-      <!-- Bullets points -->
-      <div class="grid place-items-center mt-5">
+        <!-- Cartes -->
         <div
-          class="grid grid-cols-[auto_auto_auto_auto] gap-4 place-items-center"
+          class="overflow-auto grid grid-flow-col gap-[69px] pb-5 smd:px-[100px]"
+          @scroll="detectActiveCard"
+          id="cards-container"
+          role="tablist"
         >
-          <template x-for="(_, o) in cardsTitles" :key="o">
-            <button
-              class="rounded-full w-[7px] h-[7px]"
-              :class="o === activeIndex ? 'bg-pink' : 'bg-blue'"
-              @click="scrollToCard(o)"
-            ></button>
+          <template x-for="(card, index) in cardsInformation" :key="index">
+            <div
+              data-element="card"
+              card-id="index"
+              class="rounded-[20.43px] px-6 pt-[30px] shadow-cards min-w-[283.02px] w-[283.02px] esm:min-w-[326.02px] esm:w-[326.02] md:min-w-[400px]"
+              :class="index === 2 && 'grid grid-rows-[auto_1fr] place-items-center'"
+              :id="'card-' + index"
+              role="tabpanel"
+              :aria-labelledby="'tab-' + index"
+            >
+              <div>
+                <h3 class="mb-6 text-sm" x-html="card.title"></h3>
+                <p x-html="card.content" class="text-sm"></p>
+              </div>
+              <figure class="pt-[7px]">
+                <img
+                  :src="card.image"
+                  :alt="card.alt"
+                  class="justify-self-center"
+                />
+              </figure>
+            </div>
           </template>
+        </div>
+
+        <!-- Bullets points -->
+        <div class="grid place-items-center mt-[21px]">
+          <div
+            class="grid grid-cols-[auto_auto_auto_auto] gap-4 place-items-center"
+            aria-label="Navigation entre les cartes"
+            role="navigation"
+          >
+            <template x-for="(_, o) in cardsTitles" :key="o">
+              <button
+                class="rounded-full w-[7px] h-[7px]"
+                :class="o === activeIndex ? 'bg-pink' : 'bg-blue'"
+                @click="scrollToCard(o)"
+                :aria-label="'Afficher la carte ' + (o + 1)"
+                :aria-current="o === activeIndex ? 'true' : null"
+              ></button>
+            </template>
+          </div>
         </div>
       </div>
     </section>
