@@ -30,7 +30,7 @@
     <meta name="apple-mobile-web-app-title" content="Artevia" />
     <link rel="manifest" href="./public/favicon/site.webmanifest" />
     <!-- Manifest -->
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
   </head>
   <body class="mt-[158px] text-blue">
     <header
@@ -235,7 +235,7 @@
 
         <!-- Cartes -->
         <div
-          class="overflow-auto grid grid-flow-col gap-[69px] pb-5 smd:px-[100px]"
+          class="overflow-auto pt-3 grid grid-flow-col gap-[69px] pb-5 smd:px-[100px]"
           @scroll="detectActiveCard"
           id="cards-container"
           role="tablist"
@@ -303,7 +303,7 @@
         <!-- Le podcast-->
         <div class="esm:pl-3">
           <div
-            class="bg-podcastGray rounded-[20px] py-6 pl-[18px] pr-[10px] grid grid-rows-[auto_auto] esm:grid-cols-[3rem_1fr] smd:grid-cols-[70px_1fr] esm:grid-rows-none gap-[17px] place-items-center max-w-[500px] w-full mb-[47px]"
+            class="bg-podcastGray rounded-[20px] py-6 pl-[18px] pr-[10px] grid grid-rows-[auto_auto] esm:grid-cols-[3rem_1fr] smd:grid-cols-[70px_1fr] esm:grid-rows-none gap-[17px] place-items-center w-full mb-[47px]"
             role="region"
             aria-labelledby="podcast-title"
           >
@@ -370,10 +370,11 @@
                 </figure>
               </a>
               <a
+                class="hover:-translate-y-2.5 transition-transform duration-300"
                 href="https://www.arcom.fr/podcasts"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Écouter les podcasts sur Youtuve"
+                aria-label="Écouter les podcasts sur Youtube"
               >
                 <figure>
                   <img src="./public/logos/youtube.svg" alt="Logo de Youtuve" />
@@ -822,36 +823,6 @@
 
     <!-- Wavesurfer -->
     <script src="./js/wavesurfer.js" type="module"></script>
-
-    <!-- Axeptio -->
-    <script>
-      window.axeptioSettings = {
-        clientId: "674f54aae5daaf570eff2c40",
-        cookiesVersion: "artevia-fr-EU",
-        googleConsentMode: {
-          default: {
-            analytics_storage: "denied",
-            ad_storage: "denied",
-            ad_user_data: "denied",
-            ad_personalization: "denied",
-            wait_for_update: 500,
-          },
-        },
-      };
-      (function (d, s) {
-        var t = d.getElementsByTagName(s)[0],
-          e = d.createElement(s);
-        e.async = true;
-        e.src = "//static.axept.io/sdk.js";
-        t.parentNode.insertBefore(e, t);
-      })(document, "script");
-      void 0 === window._axcb && (window._axcb = []);
-      window._axcb.push(function (axeptio) {
-        axeptio.on("cookies:complete", function (choices) {
-          // Choices is a JS object containing the vendors activated or not by the user.
-        });
-      });
-    </script>
 
     <!-- Service Worker -->
     <script>

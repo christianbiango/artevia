@@ -1,21 +1,24 @@
 {
-  "name": "Artevia",
+  "name": "Arteviaa",
   "short_name": "Artevia",
+  "start_url": "/?home=true",
+  "id": "/?home=true",
   "icons": [
     {
-      "src": "/./favicon/web-app-manifest-192x192.png",
-      "sizes": "192x192",
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any"
     },
     {
-      "src": "/./favicon/web-app-manifest-512x512.png",
-      "sizes": "512x512",
+      "src": "./favicon-96x96.png",
+      "sizes": "96x96",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#000000",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "fullscreen",
+  "orientation": "portrait"
 }
