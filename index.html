@@ -64,8 +64,8 @@
           </figure>
           <span
             x-text="logoSlogan"
-            :class="{'text-[12px]': scrolled, 'text-xl': !scrolled}"
-            class="text-blue leading-none transition-all duration-[450ms]"
+            :class="{'text-[9px]': scrolled, 'text-[13px]': !scrolled}"
+            class="text-blue leading-none transition-all duration-[450ms] text-[12px]"
           ></span>
         </div>
       </div>
@@ -78,12 +78,12 @@
       aria-labelledby="progresser-title"
     >
       <div
-        class="bg-blue pt-9 px-6 sm:px-12 smd:rounded-[49px] sm:grid sm:pt-12 sm:grid-rows-[auto_auto] sm:gap-[26px] smd:grid-rows-none smd:grid-cols-[1fr_1.3fr] smd:pr-4 smd:gap-x-12 smd:h-[24rem] md:h-[28rem] lg:pl-20 md:pt-[76px] max-w-[1085px] w-full lg:justify-self-center vlg:gap-0"
+        class="bg-blue pt-9 sm:px-12 smd:rounded-[49px] sm:grid sm:pt-12 sm:grid-rows-[auto_auto] sm:gap-[26px] smd:grid-rows-none smd:grid-cols-[1fr_1.3fr] smd:pr-4 smd:gap-x-12 smd:h-[24rem] md:h-[28rem] md:gap-0 lg:pl-20 md:pt-[64px] max-w-screen-2xl w-full lg:justify-self-center lg:px-0"
       >
         <div
-          class="text-white leading-none max-w-[300px] mb-[26px] sm:mb-0 md:max-w-full lg:mt-5"
+          class="text-white px-6 sm:px-0 leading-none max-w-[300px] mb-[26px] sm:mb-0 md:max-w-full vlg:pt-12"
           x-data="{
-            firstSectionH1: 'Échanger pour mieux <strong class=\'text-lightBlue\'>progresser !</strong>', 
+            firstSectionH1: 'Échanger pour</br>mieux <strong class=\'text-lightBlue\'>progresser !</strong>', 
             firstSectionParagraph: 'Unis vous aide à engager des conversations apaisées.', 
             enSavoirPlus: 'En savoir plus'
           }"
@@ -101,7 +101,7 @@
             <button
               @click="scrollToSection($event)"
               data-target="section-desinformation"
-              class="focus:outline-none focus:ring-2 focus:ring-lightBlue bg-opaqueWhite rounded-[37.6px] grid grid-cols-[auto_auto] gap-2 place-items-center py-2 px-[12.71px] group"
+              class="focus:outline-none focus:ring-2 focus:ring-lightBlue bg-opaqueWhite rounded-[37.6px] grid grid-cols-[auto_auto] gap-2 place-items-center py-2 px-[25px] group"
               aria-label="En savoir plus sur la section désinformation"
             >
               <div
@@ -115,7 +115,7 @@
           </div>
         </div>
         <figure
-          class="justify-self-end sm:grid sm:justify-items-center smd:justify-items-end content-end w-full md:block max-w-[493px]"
+          class="justify-self-end sm:justify-self-center sm:grid sm:justify-items-center smd:justify-items-end content-end smd:justify-self-end md:block max-w-[493px] w-[250px] esm:w-[300px] sm:w-full"
         >
           <img
             class="w-full aspect-[4/3]"
@@ -134,27 +134,39 @@
       aria-labelledby="desinformation-heading"
     >
       <div
-        class="w-full justify-self-center grid grid-rows-[auto_auto] gap-6 smd:grid-cols-[auto_1fr] smd:gap-x-[144px] max-w-[1085px]"
-        x-data="{ secondSectionH2: 'Lutter contre</br>la <strong>désinformation</strong> !' }"
+        class="w-full smd:place-items-center grid grid-rows-[auto_auto] gap-6 smd:gap-x-[144px] max-w-screen-2xl relative"
+        x-data="{secondSectionH2: 'Lutter contre <span class=\'block smd:inline\'>la <strong>désinformation</strong> !</span>'}"
       >
         <h2
           id="desinformation-heading"
           x-html="secondSectionH2"
-          class="text-2xl leading-7 smd:content-center lg:text-5xl"
+          class="text-2xl leading-7 smd:content-center"
         ></h2>
-        <div class="grid place-items-center w-full">
-          <div class="rounded-[18px] overflow-hidden w-full">
-            <iframe
-              class="w-full h-[216px] esm:h-[280px] sm:h-[350px] smd:h-[324px] max-w-[524px]"
-              src="https://www.youtube.com/embed/D_AlkIJ8oU4"
-              title="Une vidéo expliquant ce qu'est une landing page"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-              aria-describedby="desinformation-video-description"
-            ></iframe>
-          </div>
+        <div class="rounded-[18px] overflow-hidden w-full">
+          <iframe
+            class="w-full h-[216px] esm:h-[280px] sm:h-[350px] smd:h-[324px] md:h-[450px]"
+            src="https://www.youtube.com/embed/D_AlkIJ8oU4"
+            title="Une vidéo expliquant ce qu'est une landing page"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            aria-describedby="desinformation-video-description"
+          ></iframe>
+          <!-- <figure class="absolute top-0 right-0 -z-50">
+            <img
+              class="w-[100px] h-[140px]"
+              src="./public/img/pictogrammes/bulles-droites.svg"
+              alt=""
+            />
+          </figure>
+          <figure class="absolute -z-50">
+            <img
+              class="w-[100px] h-[140px]"
+              src="./public/img/pictogrammes/bulles-gauches.svg"
+              alt=""
+            />
+          </figure> -->
         </div>
       </div>
     </section>
@@ -167,7 +179,7 @@
       aria-labelledby="essential-issue-heading"
     >
       <div
-        class="grid grid-rows-[auto_auto] place-items-start gap-6 max-w-[1085px] justify-self-center w-full"
+        class="grid grid-rows-[auto_auto] place-items-start gap-6 max-w-3xl justify-self-center w-full"
         x-data="{
       unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
       unEnjeuEssentielParagraphUn: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', unEnjeuEssentielParagraphDeux: 'Pour protéger nos sociétés et préserver la confiance, il est indispensable de développer un esprit critique, de s’appuyer sur des sources fiables et de promouvoir une culture de vérification des faits. Combattons ensemble la désinformation pour un avenir mieux informé et plus serein.'
