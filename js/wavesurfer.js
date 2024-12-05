@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     height: 40,
     barRadius: 4,
     cursorColor: "null",
-    url: "./public/audios/Myuu-TenderRemains.mp3",
+    url: "./public/audios/podcast.m4a",
   });
 
   wavesurfer.on("ready", () => {
