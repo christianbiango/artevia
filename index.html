@@ -246,7 +246,7 @@
                   x-text="title"
                   :class="{'font-bold': index === activeIndex, 'text-opaqueLightBlue': index !== activeIndex}"
                   @click="scrollToCard(index)"
-                  class="text-[10.72px] transition-all duration-300 uppercase text-nowrap cursor-pointer"
+                  class="text-[10.72px] transition-all duration-300 uppercase text-nowrap cursor-pointer hover:font-bold hover:text-blue"
                   role="tab"
                   :aria-selected="index === activeIndex"
                   :aria-controls="`card-${index}`"
