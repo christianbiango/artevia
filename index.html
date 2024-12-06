@@ -135,12 +135,12 @@
     >
       <div
         class="w-full smd:place-items-center grid grid-rows-[auto_auto] gap-6 smd:gap-x-[144px] max-w-screen-2xl relative"
-        x-data="{secondSectionH2: 'Lutter contre <span class=\'block smd:inline\'>la <strong>désinformation</strong> !</span>'}"
+        x-data="{secondSectionH2: 'Lutter contre <span class=\'block smd:inline font-bold\'>la <strong>désinformation</strong> !</span>'}"
       >
         <h2
           id="desinformation-heading"
           x-html="secondSectionH2"
-          class="text-2xl leading-7 smd:content-center"
+          class="text-2xl leading-7 smd:content-center font-medium"
         ></h2>
         <div
           class="rounded-[18px] overflow-hidden w-full max-w-[547px] max-h-[310px]"
@@ -190,7 +190,7 @@
         <div class="grid grid-rows-[auto_auto] gap-6 md:w-[80%] max-w-[710px]">
           <h2
             id="essential-issue-heading"
-            class="text-2xl md:text-center"
+            class="text-2xl md:text-center font-semibold"
             x-html="unEnjeuEssentiel"
           ></h2>
           <p
@@ -324,7 +324,7 @@
           class="md:hidden"
         >
           <h2
-            class="text-2xl mb-7"
+            class="text-2xl mb-7 font-medium"
             x-html="podcastH2"
             id="section-podcasts-title"
           ></h2>
@@ -332,7 +332,7 @@
         <!-- Le podcast-->
         <div class="esm:pl-3 md:pl-0">
           <div
-            class="bg-podcastGray rounded-[20px] py-6 pl-[18px] pr-[10px] grid grid-rows-[auto_auto] esm:grid-cols-[3rem_1fr] smd:grid-cols-[70px_1fr] esm:grid-rows-none gap-[17px] place-items-center w-full mb-[47px]"
+            class="bg-podcastGray rounded-[20px] py-6 pl-[18px] pr-[10px] grid grid-rows-[auto_auto] esm:grid-cols-[3rem_1fr] smd:grid-cols-[70px_1fr] esm:grid-rows-none gap-[17px] place-items-center w-full mb-[47px] max-w-[1080px]"
             role="region"
             aria-labelledby="podcast-title"
           >
@@ -494,7 +494,7 @@
     </section>
     <!-- Lisez nos articles -->
     <section
-      class="px-6 sm:px-9 pb-[72px] md:pt-[96px] smd:px-9 lg:px-24 lg:pb-24"
+      class="px-6 sm:px-9 pb-[72px] md:pt-[96px] lg:px-24 lg:pb-24"
       aria-labelledby="articles-title"
     >
       <div
@@ -502,12 +502,12 @@
       >
         <div
           x-data="{
-            lisezNosArticles: 'Lisez nos <span class=\'text-pink\'>articles</span>'
+            lisezNosArticles: 'Lisez nos <strong class=\'text-pink\'>articles !</strong>'
           }"
         >
           <h2
             id="articles-title"
-            class="text-2xl font-semibold md:text-center"
+            class="text-2xl font-medium md:text-center"
             x-html="lisezNosArticles"
           ></h2>
         </div>
@@ -569,7 +569,36 @@
         </div>
       </div>
     </section>
-
+    <!--  Scrabble -->
+    <section
+      class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
+      role="region"
+    >
+      <div
+        class="grid grid-rows-[auto_auto] place-items-start gap-6 md:gap-8 max-w-screen-2xl w-full md:place-items-center"
+      >
+        <div class="grid grid-rows-[auto_auto] gap-6 md:w-[80%] max-w-[710px]">
+          <h2 class="text-2xl md:text-center font-semibold md:text-3xl">
+            Testez vos <span class="text-pink">connaissances !</span>
+          </h2>
+          <p
+            id="essential-issue-paragraph-1"
+            class="text-sm md:text-center md:text-lg"
+          >
+            Placez le plus de mots possibles, en relation avec la
+            désinformation.
+          </p>
+        </div>
+        <div>
+          <figure>
+            <img
+              class="w-full md:w-[500px] md:h-auto"
+              src="./public/img/scrabble.svg"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
     <!-- Newsletter -->
     <section
       class="px-6 sm:px-9 pb-[58px] smd:px-9 lg:px-24 lg:pb-24"
