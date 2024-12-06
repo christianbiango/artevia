@@ -78,7 +78,7 @@
       aria-labelledby="progresser-title"
     >
       <div
-        class="bg-blue pt-9 sm:px-12 smd:rounded-[49px] sm:grid sm:pt-12 sm:grid-rows-[auto_auto] sm:gap-[26px] smd:grid-rows-none smd:grid-cols-[1fr_1.3fr] smd:pr-4 smd:gap-x-12 smd:h-[24rem] md:h-[28rem] md:gap-0 lg:pl-20 md:pt-[64px] max-w-screen-2xl w-full lg:justify-self-center lg:px-0"
+        class="bg-blue pt-9 sm:px-12 smd:rounded-[49px] sm:grid sm:pt-12 sm:grid-rows-[auto_auto] sm:gap-[26px] smd:grid-rows-none smd:grid-cols-[1fr_1.3fr] smd:pr-4 smd:gap-x-12 smd:h-[24rem] md:h-[28rem] md:gap-0 lg:pl-20 md:pt-[64px] max-w-screen-2xl w-full lg:px-0"
       >
         <div
           class="text-white px-6 sm:px-0 leading-none max-w-[300px] mb-[26px] sm:mb-0 md:max-w-full vlg:pt-12"
@@ -142,7 +142,9 @@
           x-html="secondSectionH2"
           class="text-2xl leading-7 smd:content-center"
         ></h2>
-        <div class="rounded-[18px] overflow-hidden w-full">
+        <div
+          class="rounded-[18px] overflow-hidden w-full max-w-[547px] max-h-[310px]"
+        >
           <iframe
             class="w-full h-[216px] esm:h-[280px] sm:h-[350px] smd:h-[324px] md:h-[450px]"
             src="https://www.youtube.com/embed/D_AlkIJ8oU4"
@@ -179,34 +181,40 @@
       aria-labelledby="essential-issue-heading"
     >
       <div
-        class="grid grid-rows-[auto_auto] place-items-start gap-6 max-w-3xl justify-self-center w-full"
+        class="grid grid-rows-[auto_auto] place-items-start gap-6 md:gap-8 max-w-screen-2xl w-full md:place-items-center"
         x-data="{
       unEnjeuEssentiel: 'Un enjeu <span class=\'text-pink\'>essentiel</span>', 
       unEnjeuEssentielParagraphUn: 'Dans un monde où l’information se propage à une vitesse fulgurante, savoir distinguer le vrai du faux est devenu une compétence cruciale. La désinformation, qu’elle soit intentionnelle ou accidentelle, met en péril notre capacité à prendre des décisions éclairées et à agir en citoyens responsables.', unEnjeuEssentielParagraphDeux: 'Pour protéger nos sociétés et préserver la confiance, il est indispensable de développer un esprit critique, de s’appuyer sur des sources fiables et de promouvoir une culture de vérification des faits. Combattons ensemble la désinformation pour un avenir mieux informé et plus serein.'
     }"
       >
-        <div class="grid grid-rows-[auto_auto] gap-6 md:w-[80%] max-w-[935px]">
+        <div class="grid grid-rows-[auto_auto] gap-6 md:w-[80%] max-w-[710px]">
           <h2
             id="essential-issue-heading"
-            class="text-2xl"
+            class="text-2xl md:text-center"
             x-html="unEnjeuEssentiel"
           ></h2>
           <p
             id="essential-issue-paragraph-1"
-            class="text-sm"
+            class="text-sm md:text-center"
             x-html="unEnjeuEssentielParagraphUn"
           ></p>
           <div x-show="expanded" x-transition id="essential-issue-paragraph-2">
-            <p class="text-sm" x-html="unEnjeuEssentielParagraphDeux"></p>
+            <p
+              class="text-sm md:text-center"
+              x-html="unEnjeuEssentielParagraphDeux"
+            ></p>
           </div>
         </div>
         <button
           @click="expanded = !expanded;"
-          class="bg-blue p-2.5 text-white rounded-lg grid grid-cols-[auto_auto] place-items-center gap-[10px]"
+          class="bg-blue px-3 py-2.5 text-white rounded-lg grid grid-cols-[auto_auto] place-items-center gap-[16px]"
           :aria-expanded="expanded"
           aria-controls="essential-issue-paragraph-2"
         >
-          <span x-text="expanded ? 'Voir moins' : 'Voir plus'"></span>
+          <span
+            class="font-medium"
+            x-text="expanded ? 'Voir moins' : 'Voir plus'"
+          ></span>
           <img
             :class="{'rotate-180' : expanded, 'rotate-0': !expanded}"
             src="./public/img/pictogrammes/fleche.svg"
@@ -224,12 +232,12 @@
       aria-labelledby="carousel-title"
       role="region"
     >
-      <div class="max-w-[1085px] justify-self-center w-full">
+      <div class="max-w-screen-2xl justify-self-center w-full">
         <h2 id="carousel-title" class="sr-only">Carrousel interactif</h2>
         <!-- Titres -->
         <div class="esm:grid esm:place-items-center">
           <ul
-            class="grid grid-cols-2 grid-rows-2 esm:grid-cols-4 esm:grid-rows-none auto-rows gap-6 place-items-center mb-8"
+            class="grid grid-cols-2 grid-rows-2 esm:grid-cols-4 esm:grid-rows-none auto-rows gap-6 place-items-center mb-6"
             role="tablist"
           >
             <template x-for="(title, index) in cardsTitles" :key="index">
@@ -251,7 +259,7 @@
 
         <!-- Cartes -->
         <div
-          class="overflow-auto pt-3 grid grid-flow-col gap-[69px] pb-5 smd:px-[100px]"
+          class="overflow-auto pt-3 pl-1 grid grid-flow-col gap-[69px] pb-5 smd:pr-[100px] lg:gap-[88px] lg:px-[200px] xl:px-[300px] xl:gap-[120px]"
           @scroll="detectActiveCard"
           id="cards-container"
           role="tablist"
@@ -267,7 +275,7 @@
               :aria-labelledby="'tab-' + index"
             >
               <div>
-                <h3 class="mb-6 text-sm" x-html="card.title"></h3>
+                <h3 class="mb-6 text-sm font-bold" x-html="card.title"></h3>
                 <p x-html="card.content" class="text-sm"></p>
               </div>
               <figure class="pt-[7px]">
@@ -308,8 +316,13 @@
       class="px-6 sm:px-9 pb-[72px] smd:px-9 lg:px-24 lg:pb-24"
       aria-labelledby="section-podcasts-title"
     >
-      <div class="max-w-[1085px] justify-self-center w-full">
-        <div x-data="{podcastH2: 'Le podcast <strong>du jour</strong>'}">
+      <div
+        class="max-w-screen-2xl justify-self-center w-full md:grid-rows-none md:grid-cols-2"
+      >
+        <div
+          x-data="{podcastH2: 'Le podcast <strong>du jour</strong>'}"
+          class="md:hidden"
+        >
           <h2
             class="text-2xl mb-7"
             x-html="podcastH2"
@@ -317,7 +330,7 @@
           ></h2>
         </div>
         <!-- Le podcast-->
-        <div class="esm:pl-3">
+        <div class="esm:pl-3 md:pl-0">
           <div
             class="bg-podcastGray rounded-[20px] py-6 pl-[18px] pr-[10px] grid grid-rows-[auto_auto] esm:grid-cols-[3rem_1fr] smd:grid-cols-[70px_1fr] esm:grid-rows-none gap-[17px] place-items-center w-full mb-[47px]"
             role="region"
@@ -484,7 +497,9 @@
       class="px-6 sm:px-9 pb-[72px] md:pt-[96px] smd:px-9 lg:px-24 lg:pb-24"
       aria-labelledby="articles-title"
     >
-      <div class="max-w-[700px] justify-self-start w-full">
+      <div
+        class="max-w-[750px] justify-self-start w-full md:justify-self-center"
+      >
         <div
           x-data="{
             lisezNosArticles: 'Lisez nos <span class=\'text-pink\'>articles</span>'
@@ -492,13 +507,13 @@
         >
           <h2
             id="articles-title"
-            class="text-2xl font-semibold"
+            class="text-2xl font-semibold md:text-center"
             x-html="lisezNosArticles"
           ></h2>
         </div>
         <div
           x-data="postsSlider"
-          class="overflow-auto grid grid-flow-col gap-[69px] py-10"
+          class="overflow-auto grid grid-flow-col gap-[69px] py-10 md:px-2"
           role="list"
           aria-label="Liste des articles"
         >
@@ -508,19 +523,19 @@
               role="listitem"
               :aria-labelledby="'post-title-' + index"
             >
-              <div class="inline-block relative">
+              <div class="inline-block relative md:w-full">
                 <figure>
                   <img
                     :src="post.imageLink"
                     :alt="post.alt"
-                    class="w-[260px] h-[212px]"
+                    class="w-[260px] h-[212px] md:w-full md:h-auto"
                   />
                 </figure>
                 <a
                   :href="post.postLink"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-[51px] h-[51px] rounded-full grid place-items-center absolute bottom-0 right-0 z-10 transition-all duration-300 ease-in-out hover:translate-x-2"
+                  class="w-[49px] h-[49px] rounded-full grid place-items-center absolute bottom-0 right-0 z-10 transition-all duration-300 ease-in-out hover:translate-x-2 md:w-[60px] md:h-[60px]"
                   :class="{'bg-pink hover:bg-lightBlue': index % 2 === 0, 'bg-lightBlue hover:bg-pink': index % 2 !== 0}"
                   aria-label="`Lire l'article intitulé : ${post.title}`"
                 >
@@ -561,18 +576,18 @@
       aria-labelledby="newsletter-title"
     >
       <div
-        class="bg-blue rounded-[12px] text-white pt-[30px] pb-5 px-4 esm:px-5 max-w-[450px] justify-self-center w-full"
+        class="bg-blue rounded-[12px] text-white pt-[30px] pb-5 px-4 esm:px-5 max-w-[1080px] justify-self-center w-full md:py-10"
       >
         <div
           class="text-center mb-8 esm:mb-10"
           x-data="{newsletter: 'NEWSLETTER', newsletterTitle: 'Ne manquez plus nos actualités quotidiennes !'}"
         >
           <span
-            class="uppercase font-bold text-[15px] text-lightBlue mb-3"
+            class="uppercase font-bold text-[15px] text-lightBlue mb-3 text-xl"
             x-text="newsletter"
           ></span>
           <h2
-            class="font-bold"
+            class="font-bold md:text-xl"
             x-text="newsletterTitle"
             id="newsletter-title"
           ></h2>
@@ -581,13 +596,13 @@
         <div class="grid place-items-center" x-data="{formComplete: false}">
           <form
             @submit.prevent="formComplete = true"
-            class="mb-5 w-full sm:w-[80%] max-w-[350px]"
+            class="mb-5 w-full sm:w-[80%] md:grid md:place-items-center"
             x-data="{submit: 'S\'inscrire', ariaDescription: 'Inscrivez-vous pour recevoir nos actualités quotidiennes par email.'}"
             aria-describedby="form-desc"
           >
             <p id="form-desc" x-text="ariaDescription" class="sr-only"></p>
             <div
-              class="bg-white rounded-[25px] py-[10px] pl-[22px] pr-[10px] grid grid-cols-[100px_auto] sm:grid-cols-[auto_auto] space-between"
+              class="bg-white rounded-[25px] py-[10px] pl-[22px] pr-[10px] grid grid-cols-[100px_auto] sm:grid-cols-[auto_auto] space-between max-w-[635px] md:w-full"
               x-data="{ email: 'Votre adresse e-mail', emailPlaceholder: 'Écris ton mail'}"
             >
               <label for="email" class="sr-only" x-text="email"></label>
@@ -629,10 +644,14 @@
             x-data="{confidentialite: 'Confidentialité garantie'}"
           >
             <img
+              class="md:h-[25px] md:w-[25px]"
               src="./public/img/pictogrammes/coche-valide.svg"
               alt="Icône coche validant la confidentialité"
             />
-            <span class="text-[11px] pt-0.5" x-text="confidentialite"></span>
+            <span
+              class="text-[11px] md:text-sm pt-0.5"
+              x-text="confidentialite"
+            ></span>
           </div>
         </div>
       </div>
@@ -642,14 +661,16 @@
       <div
         class="pl-[34px] bg-gray py-10 sm:pb-5 smd:pb-6 px-6 sm:px-9 smd:px-9 lg:px-24"
       >
-        <div class="max-w-[1085px] w-full justify-self-center">
+        <div
+          class="max-w-[1085px] text-sm md:text-lg w-full justify-self-center"
+        >
           <div
-            class="sm:grid sm:grid-cols-2 smd:grid-cols-3 sm:gap-[65px] sm:place-items-center md:items-end"
+            class="sm:grid sm:grid-cols-[auto_1fr] sm:gap-x-[16px] smd:grid-cols-3 smd:gap-[65px] sm:place-items-center md:items-end"
           >
             <!-- Logo -->
             <div
               x-data="{logoSlogan: 'Bien s\'unir pour mieux agir'}"
-              class="grid gap-y-[10px] place-items-center mb-8 smd:mb-0 md:mb-1"
+              class="grid gap-y-[10px] place-items-center mb-8 smd:mb-0 md:mb-1 md:justify-self-start"
             >
               <figure>
                 <img
@@ -672,7 +693,7 @@
               ></h2>
               <ul
                 x-data="footer"
-                class="smd:grid smd:grid-cols-2 smd:gap-x-[65px] smd:place-items-center md:block"
+                class="esm:grid esm:grid-cols-2 smd:gap-x-[65px] sm:gap-x-[20px] sm:place-items-center md:block"
               >
                 <div>
                   <li class="mb-2.5 smd:mb-0">
@@ -770,11 +791,13 @@
         </div>
       </div>
       <!-- Bandeau bleu -->
-      <div class="text-white bg-blue py-5 text-[10px] grid place-items-center">
+      <div
+        class="text-white bg-blue py-5 text-[10px] grid place-items-center px-6 sm:px-9 lg:px-24"
+      >
         <!-- Copyright -->
-        <div class="smd:grid smd:grid-cols-2">
+        <div class="sm:grid sm:grid-cols-[auto_1fr] sm:w-full">
           <div
-            class="grid grid-cols-[auto_auto_auto_auto_auto] gap-x-[8px] place-items-center mb-2.5 smd:mb-0"
+            class="grid grid-cols-[auto_auto_auto_auto_auto] gap-x-[8px] place-items-center mb-2.5 sm:mb-0"
             x-data="footer"
           >
             <template x-for="(item) in copyright">
